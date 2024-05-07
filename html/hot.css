@@ -1,0 +1,142 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/*  hot-1 下面  ----------------------------------- */
+.sec-menu {
+    text-align: center; 
+}
+
+.sec-menu a {
+    color:dimgray;
+    text-decoration: none;
+}
+
+.sec-menu ul {
+    display: inline-block; 
+    padding: 0;
+}
+
+.sec-menu li {
+    display: inline-block; 
+    margin-right: 40px;
+
+}
+
+.content{
+    text-align: center;
+}
+
+/* ----------------------------------- */
+.product1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product1 img.cloth {
+    padding:40px;
+    width: 600px;
+    height: auto;
+}
+
+.product1> div {
+    flex: 1;
+    margin-right: 10px; 
+}
+
+
+.product1 > div:first-child {
+    flex: 0 0 auto; 
+    margin-right: 10px; 
+}
+
+
+
+.product1 > div:last-child {
+    margin-right: 0; 
+}
+
+
+ 
+
+/* ------------------------------------*/
+.pd{
+    font-size: 24px;
+
+}
+
+button {
+    padding: 10px 20px;
+    background-color:gainsboro;
+    color:black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+button:hover {
+background-color: #e3dada;
+}
+
+button:active {
+background-color: #c4b0b0;
+}
+/* header----------------------------------------------------------------------------------- */
+header{
+    background-color: rgb(206, 206, 206);
+    height: 120px;
+    width: 100%;
+}
+
+h1{
+    font-family:"Optima",sans-serif;
+    font-size: 56px;
+    position: absolute;
+    left:45%;
+    top: 0px;;
+    line-height: 80px;
+    color: rgb(0, 0, 0);
+}
+
+.rtop{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-align: right;
+}
+
+
+
+header a{
+    color:black;
+    text-decoration: none;}
+    
+
+header a:hover{
+    color: rgb(128, 103, 119);
+}
+header ul{
+    position: absolute;
+    left:10vw;
+    top:60px;
+    line-height: 80px;
+    
+}
+
+header li{
+    display: inline;
+    margin-right:4vw
+}
+
+
+
+
+footer{
+    font-family:'Times New Roman', Times, serif; ;
+    background-color: rgb(206, 206, 206);
+    height: 120px;
+    width: 100%;
+    text-align: center;
+}
+

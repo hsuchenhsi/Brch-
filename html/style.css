@@ -1,0 +1,215 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 登入/註冊 ---------------------------------------------------- */
+.rtop{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-align: right;
+}
+.rtop li {
+    list-style-type: none;
+}
+
+
+
+/* 選單 ---------------------------------------------------- */
+nav{
+    grid-area: nav;
+    text-align: center;
+    font-size: 16px;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.menu{
+    padding-top: 30px;
+}
+
+
+.choose{
+    display: inline-block;
+}
+
+.choose li{
+    position: relative;
+    white-space: nowrap;
+}
+
+.choose > li:last-child{
+    border-right: none;
+}
+
+.choose > li{
+    float: left;
+}
+
+.choose a{
+    display: block;
+    padding: 0 30px;
+    color: #333333;
+    text-decoration: none;
+    line-height: 40px;
+}
+
+.choose a:hover{
+    color: rgb(128, 103, 119);
+}
+
+
+.choose li:hover{
+    color: rgb(128, 103, 119);
+}
+
+.choose ul{
+    position: absolute;
+    z-index: 99;
+    left:-1px;
+    top:100%;
+    min-width: 150px;
+}
+
+.choose ul li{
+    border-bottom: #bdb0ac 1px solid; 
+}
+
+.choose ul li:last-child{
+    border-bottom: none;
+}
+
+.choose ul{
+    left:-99999px;
+    opacity: 0;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+}
+
+.choose li:hover > ul{
+    opacity: 1;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+    left:-1px;
+    border-right: 5px;
+}
+/* ------------------------------------------------------ */
+header{
+    background-color: rgb(216, 216, 216);
+    height: 120px;
+    width: 100%;
+}
+
+h1{
+    font-family:"Optima",sans-serif;
+    font-size: 56px;
+    position: absolute;
+    left:45%;
+    top: 0px;;
+    line-height: 80px;
+    color: rgb(0, 0, 0);
+}
+
+/* .cloth{
+    padding: 10px 10px 30px 10px; 
+    max-width: 90%;
+    max-height: 90%;
+} */
+
+/* .container h2{     
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+}
+main h3{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+} */
+/* .container div{
+    width: 240px;
+    height: 320px;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 30px 30px 30px;
+    text-align: center;
+} */
+/* .container a{
+    text-decoration: none;
+    color:inherit
+} */
+
+
+
+ /* main 商品顯示 ------------------------------ */
+ .classification{
+    font-size: 60px;
+    background-color: rgb(225, 210, 209);
+    text-align: center;
+}
+
+.classification h2{
+    font-size: 36px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 1280px;
+    margin: 40px auto;
+    /* background: rgb(207, 193, 220); */
+ }
+
+.product{
+    width: 300px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+
+ .product a {
+    color: black; 
+    text-decoration: none; 
+}
+
+
+ .product img{
+    padding: 10px 10px 10px 10px; 
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+ }
+
+ .product p{
+    font-size: 24px;
+    font-family:'Times New Roman', Times, serif;
+    margin: 0 0 0 10px;
+ }
+
+ .product span{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 0 0 10px;
+
+ }
+
+.list div:hover{
+    transform: scale(1.05); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);  
+}
+
+
+
+/* footer--------------------------------------------- */
+footer{
+    font-family:'Times New Roman', Times, serif; ;
+    background-color: rgb(206, 206, 206);
+    height: 120px;
+    width: 100%;
+    text-align: center;
+}
