@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'home',
+    'Brche',
 ]
 
 
@@ -82,6 +83,16 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shop_web',
+        'USER': 'root',
+        'PASSWORD': '11056044',
+        'HOST': '127.0.0.1',  # 或者是 'localhost'
+        'PORT': '3306',        # MySQL 的預設端口
     }
 }
 
