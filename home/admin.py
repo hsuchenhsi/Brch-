@@ -4,11 +4,11 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import *
 
-admin.site.register(會員資料)
-admin.site.register(會員密碼)
-admin.site.register(商品)
-admin.site.register(庫存)
-admin.site.register(訂單)
-admin.site.register(訂單明細)
-admin.site.register(購物車)
-admin.site.register(評論)
+admin.site.register(MemberData)
+admin.site.register(MemberPassword)
+admin.site.register(Product)
+admin.site.register(Store)
+admin.site.register(Order)
+admin.site.register(OrderDetail)
+admin.site.register(ShopingCart)
+admin.site.register(Comment)
