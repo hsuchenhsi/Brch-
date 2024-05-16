@@ -21,8 +21,11 @@ h1{
 
 .rtop{
     color: rgb(0, 0, 0);
-    text-decoration: none;
-    text-align: right;
+    text-decoration:none;
+    text-align:right;
+    word-spacing: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
 }
 
 
@@ -51,9 +54,10 @@ header li{
 
 nav{
     grid-area: nav;
-    text-align: center;
+    text-align:center;
     font-size: 16px;
 }
+
 ul{
     margin: 0;
     padding: 0;
