@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 登入/註冊 ---------------------------------------------------- */
+.rtop{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-align: right;
+}
+.rtop li {
+    list-style-type: none;
+}
+
+
+ /* main 商品顯示 ------------------------------ */
+ .classification{
+    font-size: 60px;
+    background-color: rgb(225, 210, 209);
+    text-align: center;
+}
+
+.classification h2{
+    font-size: 36px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 1280px;
+    margin: 40px auto;
+    /* background: rgb(207, 193, 220); */
+ }
+
+.product{
+    width: 300px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+
+ .product a {
+    color: black; 
+    text-decoration: none; 
+}
+
+
+ .product img{
+    padding: 10px 10px 10px 10px; 
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+ }
+
+ .product p{
+    font-size: 24px;
+    font-family:'Times New Roman', Times, serif;
+    margin: 0 0 0 10px;
+ }
+
+ .product span{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 0 0 10px;
+
+ }
+
+.list div:hover{
+    transform: scale(1.05); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);  
+}
+
+
+

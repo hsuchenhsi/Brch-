@@ -28,5 +28,7 @@ urlpatterns = [
     path("A02.html/", views.A02, name='A02'),
     path("order.html/", views.order, name='order'),
     path("information.html/", views.information, name='order'),
+    path("describe.html/", views.describe, name='describe'),
+
 
 ]
