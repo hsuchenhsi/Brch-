@@ -14,45 +14,64 @@ closeShopping.addEventListener('click',()=>{
     body.classList.remove('active');
 })
 
-let products = [
-    {
-        id:1,
-        name:'我不知道這叫什麼',
-        img:'2.jpg',
-        price:299
-    },
-    {
-        id:2,
-        name:'我不知道這叫什麼',
-        img:'2.jpg',
-        price:299
-    },
-    {
-        id:3,
-        name:'我不知道這叫什麼',
-        img:'2.jpg',
-        price:299
-    },
-    {
-        id:4,
-        name:'我不知道這叫什麼',
-        img:'2.jpg',
-        price:299
-    },
+// let products = [
+//     {
+//         id:1,
+//         name:'我不知道這叫什麼',
+//         img:'2.jpg',
+//         price:299
+//     },
+//     {
+//         id:2,
+//         name:'我不知道這叫什麼',
+//         img:'2.jpg',
+//         price:299
+//     },
+//     {
+//         id:3,
+//         name:'我不知道這叫什麼',
+//         img:'2.jpg',
+//         price:299
+//     },
+//     {
+//         id:4,
+//         name:'我不知道這叫什麼',
+//         img:'2.jpg',
+//         price:299
+//     },
 
-];
+// ];
 
-let listCards = [];
-function initApp(){
-    products.forEach((value, key)=>{
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('item');
-        newDiv.innerHTML = `
-            <img src="img/${value.img}"/>;
-            <div class="title">${value.name}</div>
-            <div class="price">${value.price.toLocaleString()}</div>
-        `;
-        list.appendChild(newDiv);
-    })
-}
-initApp();
+// let listCards = [];
+// function initApp(){
+//     products.forEach((value, key)=>{
+//         let newDiv = document.createElement('div');
+//         newDiv.classList.add('item');
+//         newDiv.innerHTML = `
+//             <img src="img/${value.img}"/>;
+//             <div class="title">${value.name}</div>
+//             <div class="price">${value.price.toLocaleString()}</div>
+//         `;
+//         list.appendChild(newDiv);
+//     })
+// }
+// initApp();
+
+
+// function addToCard(key){
+//     if(listCard[key] == null){
+//         listCard[key] == product[key];
+//         listCard[key].quantity = 1;
+//     }
+//     reloadCard();
+// }
+// function reloadCard(){
+//     listCard.innerHTML = '';
+//     let count = 0;
+//     let totalPrice =0;
+//     listCard.forEach((value, key) => {
+//         totalPrice = totalPrice + value.price;
+//         count = count + value.quantity;
+//     })
+//     total.innerHTML
+// }

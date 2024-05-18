@@ -8,7 +8,7 @@
 
 
 </head>
-<body>
+<body class="body">
     <header>
         <h1 id="title">Brch&eacute;</h1>
         <nav class="rtop">
@@ -18,8 +18,15 @@
                 <span class="quantity">0</span>
             </div>
 
-            <li><a href="../login.html">登入/註冊</a></li>
-            <li><a href="/cart.html">購物車</a></li>
+            <div class="user">
+                <a href="../login.html">
+                    <img src="{% static 'img/user.png' %}" width="60">
+                </a>
+            </div>
+
+
+            <!-- <li><a href="../login.html">登入/註冊</a></li> -->
+            <!-- <li><a href="/cart.html">購物車</a></li> -->
 
         </nav>
         <nav class="menu">
@@ -107,21 +114,22 @@
     </div>
     <div class="'list"></div>
 
+   
+
+    <div class="cart">
+        <div class="list"></div>
+    </div>
+
     <div class="card">
         <h1>card</h1>
         <ul class="listCard"></ul>
         <div class="checkOut">
             <div class="total">0</div>
-            <div class="closeshopping">close</div>
+            <div class="closeShopping">close</div>
         </div>
     </div>
+   
 
-
-
-    <main>
-        
-            
-    </main>
     <script src="{% static 'js/header.js' %}"></script>
 </body>
 </html>
