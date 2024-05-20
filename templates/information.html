@@ -9,14 +9,41 @@
 </head>
 <body>
     <header>
-        {% include 'header.html' %}
+        {% include 'header.html' with include_title_only=True %}
     </header>
 
-    <main>
-        <div class="classification">
-            <h2>個人資訊</h2>
+    <form>
+        {% csrf_token %}
+        <h2>個人資訊</h2>
+
+        <div class="list">
+            <div>
+                <label for="name">編號：</label>
+                <input type='text', id='no', name='no', value='{{ member.menberNo }}' readonly>
+            </div>
+            <div>
+                <label for="name">姓名：</label>
+                <input type='text', id='name', name='name', value='{{ member.menberName }}'>
+            </div>
+            <div>
+                <label for="name">生日：</label>
+                <input type='text', id='name', name='name', value='{{ member.birthday }}'>
+            </div>
+            <div>
+                <label for="name">性別：</label>
+                <input type='text', id='name', name='name', value='{{ member.gender }}'>
+            </div>
+            <div>
+                <label for="name">電話號碼：</label>
+                <input type='text', id='name', name='name', value='{{ member.phone }}'>
+            </div>
+            <div>
+                <label for="name">電子郵件：</label>
+                <input type='text', id='name', name='name', value='{{ member.email }}'>
+            </div>
+            <button type="submit">儲存</button>
         </div>
-    </main>
+    </form>
 
 </body>
 </html>

@@ -10,110 +10,112 @@
 </head>
 <body class="body">
     <header>
-        <h1 id="title">Brch&eacute;</h1>
-        <nav class="rtop">
+        <div class="title">
+            <h1 id="title">Brch&eacute;</h1>
+            <nav class="rtop">
 
-            <div class="shopping">
-                <img src="{% static 'img/shopping_bag.png' %}" width="40">
-                <span class="quantity">0</span>
-            </div>
+                <div class="shopping">
+                    <img src="{% static 'img/shopping_bag.png' %}" width="40">
+                    <span class="quantity">0</span>
+                </div>
 
-            <div class="user">
-                <a href="../login.html">
-                    <img src="{% static 'img/user.png' %}" width="60">
-                </a>
-            </div>
-
+                <div class="user">
+                    <a href="../login.html">
+                        <img src="{% static 'img/user.png' %}" width="60">
+                    </a>
+                </div>
+        </div>
 
             <!-- <li><a href="../login.html">登入/註冊</a></li> -->
             <!-- <li><a href="/cart.html">購物車</a></li> -->
 
         </nav>
-        <nav class="menu">
-            <ul class="choose">
-                <li><a href="../#">新品上市</a></li>
-                <li><a href="#"><i class="fa-solid fa-cloth fa-fw"></i>上衣</a>
-                    <ul >
-                        <li><a href="../A01.html">無袖</a></li>
-                        <li><a href="../A02.html">短袖</a></li>
-                        <li><a href="/A03.html">長袖</a></li>
-                        <li><a href="/A04.html">襯衫</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-pants fa-fw"></i>下裝</a>
-                    <ul >
-                        <li><a href="#">裙類</a></li>
-                        <li><a href="#">短褲</a></li>
-                        <li><a href="#">長褲</a></li>
-                        <li><a href="#">牛仔褲</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-dress fa-fw"></i>洋裝</a>
-                    <ul >
-                        <li><a href="#">小碎花</a></li>
-                        <li><a href="#">直筒</a></li>
-                        <li><a href="#">無袖</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-sweater fa-fw"></i>毛衣</a>
-                    <ul >
-                        <li><a href="#">毛衣</a></li>
-                        <li><a href="#">針織背心</a></li>
-                        <li><a href="#">針織外套</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>外套/夾克</a>
-                    <ul >
-                        <li><a href="#">休閒外套</a></li>
-                        <li><a href="#">防風外套</a></li>
-                        <li><a href="#">羽絨外套</a></li>
-                        <li><a href="#">大衣</a></li>
+        {% if include_menu %}
+            <nav class="menu">
+                <ul class="choose">
+                    <li><a href="../#">新品上市</a></li>
+                    <li><a href="#"><i class="fa-solid fa-cloth fa-fw"></i>上衣</a>
+                        <ul >
+                            <li><a href="../A01.html">無袖</a></li>
+                            <li><a href="../A02.html">短袖</a></li>
+                            <li><a href="/A03.html">長袖</a></li>
+                            <li><a href="/A04.html">襯衫</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-pants fa-fw"></i>下裝</a>
+                        <ul >
+                            <li><a href="#">裙類</a></li>
+                            <li><a href="#">短褲</a></li>
+                            <li><a href="#">長褲</a></li>
+                            <li><a href="#">牛仔褲</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-dress fa-fw"></i>洋裝</a>
+                        <ul >
+                            <li><a href="#">小碎花</a></li>
+                            <li><a href="#">直筒</a></li>
+                            <li><a href="#">無袖</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-sweater fa-fw"></i>毛衣</a>
+                        <ul >
+                            <li><a href="#">毛衣</a></li>
+                            <li><a href="#">針織背心</a></li>
+                            <li><a href="#">針織外套</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>外套/夾克</a>
+                        <ul >
+                            <li><a href="#">休閒外套</a></li>
+                            <li><a href="#">防風外套</a></li>
+                            <li><a href="#">羽絨外套</a></li>
+                            <li><a href="#">大衣</a></li>
 
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>家居</a>
-                    <ul >
-                        <li><a href="#">睡衣</a></li>
-                        <li><a href="#">睡袍</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>鞋子</a>
-                    <ul >
-                        <li><a href="#">平底鞋</a></li>
-                        <li><a href="#">老爹鞋</a></li>
-                        <li><a href="#">洞洞鞋</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>包包/皮夾</a>
-                    <ul >
-                        <li><a href="#">手提包</a></li>
-                        <li><a href="#">後背包</a></li>
-                        <li><a href="#">肩背包</a></li>
-                        <li><a href="#">皮夾</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>家居</a>
+                        <ul >
+                            <li><a href="#">睡衣</a></li>
+                            <li><a href="#">睡袍</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>鞋子</a>
+                        <ul >
+                            <li><a href="#">平底鞋</a></li>
+                            <li><a href="#">老爹鞋</a></li>
+                            <li><a href="#">洞洞鞋</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>包包/皮夾</a>
+                        <ul >
+                            <li><a href="#">手提包</a></li>
+                            <li><a href="#">後背包</a></li>
+                            <li><a href="#">肩背包</a></li>
+                            <li><a href="#">皮夾</a></li>
 
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>配件</a>
-                    <ul >
-                        <li><a href="#">飾品</a></li>
-                        <li><a href="#">皮帶</a></li>
-                        <li><a href="#">帽子</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>會員中心</a>
-                    <ul>
-                        <li><a href='../order.html'>訂單查詢</a><li>
-                        <li><a href='../information.html'>個人資訊</a><li>    
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div class="hot-product">
-        
-    </div>
-    <div class="'list"></div>
-
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>配件</a>
+                        <ul >
+                            <li><a href="#">飾品</a></li>
+                            <li><a href="#">皮帶</a></li>
+                            <li><a href="#">帽子</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>會員中心</a>
+                        <ul>
+                            <li><a href='../order.html'>訂單查詢</a><li>
+                            <li><a href='../information.html'>個人資訊</a><li>    
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="hot-product">
+            
+        </div>
+        <div class="'list"></div>
+    {% endif %}
    
 
     <div class="cart">

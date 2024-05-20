@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from home.models import MemberData
+
 # Create your views here.
 def frontpage(request):
     return render(request,'frontpage.html')
@@ -20,4 +22,8 @@ def order(request):
     return render(request,'order.html')
 
 def information(request):
-    return render(request,'information.html')
+    try: 
+        member = MemberData.objects.get(menberName="test01") #讀取一筆資料
+    except:
+        errormessage = " (讀取錯誤!)"
+    return render(request, 'information.html', locals())
