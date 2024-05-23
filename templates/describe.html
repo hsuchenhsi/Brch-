@@ -5,7 +5,46 @@
     <meta charset="UTF-8">
     <title>Welcome to Brch&eacute;</title>
     <link rel="stylesheet" href="{% static 'css/describe.css' %}">
+    <style>
+    /* 模態視窗樣式 */
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
 
+        /* 模態內容樣式 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* 關閉按鈕樣式 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 
 </head>
 <body>
@@ -45,27 +84,43 @@
         
 
         <div class="sec-menu">
-            <ul>
-                <li><a href="#section1">描述</a></li>
-                <li><a href="#section2">尺寸表</a></li>
-                <li><a href="#section3">評論</a></li>
-            </ul>
-        </div>
-        
-        <div class="content" style="padding: 40px 240px 40px 240px">
-            <h2 id="section1" style="padding: 4px">產品描述</h2>
-            <p>是一款時尚的衣服，具有獨特的設計和高品質的製作。有多種尺寸可供選擇，包括 XS、S、M、L 和 XL。您可以根據自己的喜好和需要選擇適合的尺寸。此外，您也可以選擇您想購買的數量，方便您根據需求調整。這款衣服不僅適合日常穿著，還可以搭配不同的服飾搭配，展現出不同的風格。如果您喜歡這款衣服，歡迎加入購物車或立即購買。</p>
-            <h2 id="section2" style="padding: 4px">尺寸表</h2>
-            <p>XS<br>S<br>M<br>L<br>XL</p>
-            <h2 id="section3" style="padding: 4px">產品評論</h2>
+            <div class="tabs">
+                <div class="tab active" data-tab="tab1">描述</div>
+                <div class="tab" data-tab="tab2">尺寸表</div>
+                <div class="tab" data-tab="tab3">評論</div>
+            </div>
             
-            <div>商品評論</div>
+            <div class="contents" style="padding: 40px 240px 40px 240px">
+                <div class="content active" id="tab1-content">
+                    <p>是一款時尚的衣服，具有獨特的設計和高品質的製作。有多種尺寸可供選擇，包括 XS、S、M、L 和 XL。您可以根據自己的喜好和需要選擇適合的尺寸。此外，您也可以選擇您想購買的數量，方便您根據需求調整。這款衣服不僅適合日常穿著，還可以搭配不同的服飾搭配，展現出不同的風格。如果您喜歡這款衣服，歡迎加入購物車或立即購買。</p>
+                </div>
+                <div class="content" id="tab2-content">
+                    <p>XS<br>S<br>M<br>L<br>XL</p>
+                </div>
+                <div class="content" id="tab3-content">
+                    <button id="openModalButton">留下評論</button> 
+                    <div id="modal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>輸入文字</h2>
+                            <textarea rows="4" cols="50"></textarea>
+                        </div>
+                    </div>   
+                </div>
+            </div>
         </div>
-        
+
+       
+
             
     </main>
+    
+
+
     <footer>
         <p>COPYRIGHT&copy;BRCHE CO.,LTD.ALL RIGHTS RESERVED.</p>
     </footer>
+    <script src="{% static 'js/describe.js' %}"></script>
 </body>
+
 </html>

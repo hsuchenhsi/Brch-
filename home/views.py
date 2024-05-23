@@ -21,6 +21,9 @@ def A02(request):
 def order(request):
     return render(request,'order.html')
 
+def describe(request):
+    return render(request, 'describe.html')
+
 def information(request):
     try: 
         member = MemberData.objects.get(menberName="test01") #讀取一筆資料
