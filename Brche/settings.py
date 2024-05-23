@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'home',
     'Brche',
+    'import_export',
 ]
 
+IMPORT_EXPORT_USE_TRANSACTIONS=True #
 
 
 MIDDLEWARE = [
