@@ -5,45 +5,9 @@
     <meta charset="UTF-8">
     <title>Welcome to Brch&eacute;</title>
     <link rel="stylesheet" href="{% static 'css/describe.css' %}">
+    <!-- 星星的css -->
     <style>
-    /* 模態視窗樣式 */
-    .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        /* 模態內容樣式 */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-        }
-
-        /* 關閉按鈕樣式 */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        
     </style>
 
 </head>
@@ -98,21 +62,66 @@
                     <p>XS<br>S<br>M<br>L<br>XL</p>
                 </div>
                 <div class="content" id="tab3-content">
+                    <h3>顧客評論(1)</h3>
+
+                    <div class="customer-reviews">
+                        <h5>平均評分</h5>
+
+                    </div>
+
+                    <div>
+                        <p>11056087</p>
+                        <div id="customer-star">
+                            <span class="getstar" data-value="1">★</span>
+                            <span class="getstar" data-value="2">★</span>
+                            <span class="getstar" data-value="3">★</span>
+                            <span class="getstar" data-value="4">★</span>
+                            <span class="getstar" data-value="5">★</span>
+                        </div>
+                        <p>小黑說他長得很好看</p>
+                        <p>整體適合：</p>
+                        <p>尺寸：</p>
+                        <p>23 May,2024</p>
+                    </div>
+
+
                     <button id="openModalButton">留下評論</button> 
                     <div id="modal" class="modal">
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <h2>輸入文字</h2>
-                            <textarea rows="4" cols="50"></textarea>
+                            <h3>商品評分</h3>
+    
+                            <div id="stars">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+
+                            <div></div>
+                            <h3>商品評論</h3>
+                            <textarea rows="10" cols="50">文字評論不少於五個字</textarea>
+                            <h3>購買尺寸</h3>
+                            <div>
+                                <button>XS</button>
+                                <button>S</button>
+                                <button>M</button>
+                                <button>L</button>
+                                <button>XL</button>
+                            </div>
+                            <div>-</div>
+                            <div>
+                                <button>取消</button>
+                                <button>提交</button>
+                            </div> 
+                            
                         </div>
+                        
                     </div>   
                 </div>
             </div>
-        </div>
-
-       
-
-            
+        </div> 
     </main>
     
 
@@ -122,5 +131,52 @@
     </footer>
     <script src="{% static 'js/describe.js' %}"></script>
 </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.star');
+        const ratingDisplay = document.getElementById('rating');
+        let currentRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const value = this.getAttribute('data-value');
+                highlightStars(value);
+                ratingDisplay.textContent = value;
+            });
+
+            star.addEventListener('mouseout', function() {
+                if (currentRating === 0) {
+                    resetStars();
+                    ratingDisplay.textContent = '0';
+                } else {
+                    highlightStars(currentRating);
+                    ratingDisplay.textContent = currentRating;
+                }
+            });
+
+            star.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                currentRating = value;
+                highlightStars(value);
+                ratingDisplay.textContent = value;
+            });
+        });
+
+        function highlightStars(value) {
+            stars.forEach(star => {
+                star.style.color = star.getAttribute('data-value') <= value ? 'Pink' : 'lavenderblush';
+            });
+        }
+
+        function resetStars() {
+            stars.forEach(star => {
+                star.style.color = 'lightgrey';
+            });
+        }
+        });
+
+    </script>
+
 
 </html>
