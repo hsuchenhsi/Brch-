@@ -91,3 +91,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.commentNo)
+
+
+
+# ------------------------
+from django.db import models
+
+class CustomUser(models.Model):
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.username

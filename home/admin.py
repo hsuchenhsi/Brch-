@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from home.models import CustomUser 
 
 from .models import *
 from import_export.admin import ImportExportModelAdmin
@@ -16,6 +16,7 @@ admin.site.register(OrderDetail)
 admin.site.register(ShopingCart)
 admin.site.register(Comment)
 
+
 from import_export.formats import base_formats
 class ProductAdmin(ImportExportModelAdmin):
     resource_class = ProductResource
@@ -25,3 +26,16 @@ class ProductAdmin(ImportExportModelAdmin):
     skip_unchanged = True  # 跳过未更改的行
     report_skipped = False  # 不报告跳过的行
 admin.site.register(Product, ProductAdmin)
+
+
+
+
+
+from django.contrib import admin
+from .models import CustomUser
+
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'password')
+
+admin.site.register(CustomUser, CustomUserAdmin)
+
