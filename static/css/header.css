@@ -14,6 +14,10 @@
     right:4%;
 }
 
+.modal{
+    float: right;
+}
+
 /* shopping bag */
 .cart{
     width: 1000px;
@@ -114,7 +118,6 @@
 
 
 /* ---------------------------------------------------------------------------------------------------------- */
-
 header{
     background-color: rgb(206, 206, 206);
     height: 120px;
@@ -248,3 +251,4 @@ ul{
     left:-1px;
     border-right: 5px;
 }
+

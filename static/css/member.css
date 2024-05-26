@@ -1,0 +1,31 @@
+.modal{
+    width: 300px;
+    height: 320px;
+    object-fit: cover;
+    margin: 50px;
+    border-radius: 20px;
+    background-color: rgb(210, 219, 224) !important;
+    
+}
+
+.hello{
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+}
+
+.close {
+    color: #ff0000;
+    margin-top: 20px;
+    margin: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.button {
+    transition-duration: 0.4s;
+  }
+  
+.information:hover, .order:hover{
+background-color: #b1c0c5;
+color: white;
+}

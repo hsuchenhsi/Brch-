@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>    
+    <link rel="stylesheet" href="{% static 'css/member.css' %}">
+
+</head>
+<body>
+    <div class="hello">
+        {{ member.memberName }}，哈囉！
+    </div>
+
+    <h2></h2>
+
+    <div class="button">
+        <div class="informtation">
+            <a href='../information.html'>
+                <button class="information" type="button">帳戶資訊</button>
+            </a>
+        </div>
+        <div class="order">
+            <a href='../order.html'>
+                <button class="order" type="button">訂單查詢</button>  
+            </a>
+        </div>  
+    <div>
+
+</body>
+</html>

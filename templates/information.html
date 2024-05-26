@@ -9,29 +9,28 @@
 </head>
 <body>
     <header>
-        {% include 'header.html' with include_title_only=True %}
+        <h1>帳戶資訊</h1>
     </header>
 
     <form>
-        {% csrf_token %}
-        <h2>個人資訊</h2>
+        <h2></h2>
 
         <div class="list">
             <div>
                 <label for="name">編號：</label>
-                <input type='text', id='no', name='no', value='{{ member.menberNo }}' readonly>
+                <a type='text', id='no', name='no', value='{{ member.memberNo }}'></a>
             </div>
             <div>
                 <label for="name">姓名：</label>
-                <input type='text', id='name', name='name', value='{{ member.menberName }}'>
+                <a type='text', id='name', name='name', value='{{ member.memberName }}'></a>
             </div>
             <div>
                 <label for="name">生日：</label>
-                <input type='text', id='name', name='name', value='{{ member.birthday }}'>
+                <a type='text', id='name', name='name', value='{{ member.birthday }}'></a>
             </div>
             <div>
                 <label for="name">性別：</label>
-                <input type='text', id='name', name='name', value='{{ member.gender }}'>
+                <a type='text', id='name', name='name', value='{{ member.gender }}'></a>
             </div>
             <div>
                 <label for="name">電話號碼：</label>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Welcome to Brch&eacute;</title>
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    
 
 
 </head>
@@ -15,21 +16,20 @@
             <nav class="rtop">
 
                 <div class="shopping">
-                    <img src="{% static 'img/shopping_bag.png' %}" width="40">
+                    <input type="image" src="{% static 'img/shopping_bag.png' %}"  alt="shopping" name="shopping" id="shopping"; width="40"/>
                     <span class="quantity">0</span>
                 </div>
 
                 <div class="user">
-                    <a href="../login.html">
-                        <img src="{% static 'img/user.png' %}" width="60">
-                    </a>
+                    <input type="image" src="{% static 'img/user.png' %}"  alt="user" name="user" id="user"; width="60"/>    
                 </div>
+            </nav>
         </div>
 
             <!-- <li><a href="../login.html">登入/註冊</a></li> -->
             <!-- <li><a href="/cart.html">購物車</a></li> -->
 
-        </nav>
+            
             <nav class="menu">
                 <ul class="choose">
                     <li><a href="../#">新品上市</a></li>
@@ -103,13 +103,13 @@
                     </li>
                     <li><a href="#"><i class="fa-solid fa-jacket fa-fw"></i>會員中心</a>
                         <ul>
-                            <li><a href='../order.html'>訂單查詢</a><li>
+                            <li><a href='../member.html'>訂單查詢</a><li>
                             <li><a href='../information.html'>個人資訊</a><li>    
                         </ul>
                     </li>
                 </ul>
             </nav>
-        </header>
+    </header>
         <div class="hot-product">
             
         </div>
@@ -128,8 +128,20 @@
             <div class="closeShopping">close</div>
         </div>
     </div>
-   
+
+    {% if user.is_authenticated %}              
+        <div id="modal" class="modal" >
+            <span class="close">&times;</span>
+            {% include 'member.html' %}
+        </div>
+    {% else %}
+        <div id="login" class="login">
+            <a href="{% url 'login' %}"></a>
+        </div>
+    {% endif %}
+
 
     <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/member.js' %}"></script>
 </body>
 </html>

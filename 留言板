@@ -1,1 +1,3 @@
-
+header.html 23到35行：
+如果已經登入，則顯示member.html頁面。
+如果還未登入，點選user圖示，跳到login.html頁面。

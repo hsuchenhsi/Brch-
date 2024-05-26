@@ -32,11 +32,11 @@ def information(request):
     return render(request, 'information.html', locals())
 
 
+def member(request):
+    return render(request, 'member.html')
 
 
 
-
-from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
 from .models import CustomUser
 
