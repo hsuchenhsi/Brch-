@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/describe.css' %}">
     <!-- 星星的css -->
     <style>
-        
+        /* 添加必要的CSS样式 */
     </style>
-
 </head>
 <body>
     <header>
@@ -21,31 +20,77 @@
                 <img src="{% static 'img/2.jpg' %}" alt="describe" width="600">
             </div>
         
-        <div class="pd">
-            <h2>我不知道這要叫什麼</h2>
-            <h2>NT$&nbsp;1680</h2>
-            <h3>尺寸：</h3>
-            <div>
-                <button>XS</button>
-                <button>S</button>
-                <button>M</button>
-                <button>L</button>
-                <button>XL</button>
+            <div class="pd">
+                <h2>我不知道這要叫什麼</h2>
+                <h2>NT$&nbsp;1680</h2>
+                <h3>尺寸：<span class="selected-size">未選擇</span></h3>
+                <div class="size-buttons">
+                    <button data-size="XS">XS</button>
+                    <button data-size="S">S</button>
+                    <button data-size="M">M</button>
+                    <button data-size="L">L</button>
+                    <button data-size="XL">XL</button>
+                </div>
+                <h3>數量：<span class="num">0</span></h3>
+                <div>
+                    <button class="minus-btn">-</button>
+                    <button class="plus-btn">+</button>
+                </div>
+                <div><br></div>
+                <div>
+                    <button class="addToCart">加入購物車</button>
+                    <button>立即購買</button>
+                </div>
             </div>
-    
-            <h3>數量：</h3>
-            <div>
-                <button>-</button>
-                <button>+</button>
-            </div>
-            <div><br></div>
-            <div>
-                <button>加入購物車</button>
-                <button>立即購買</button>
-            </div>
-        </div>
         </div>
         
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const numElement = document.querySelector('.num');
+                const plusButton = document.querySelector('.plus-btn');
+                const minusButton = document.querySelector('.minus-btn');
+                const addToCartButton = document.querySelector('.addToCart');
+                const selectedSizeElement = document.querySelector('.selected-size');
+                let num = 0;
+                let quantity = 0;
+                let selectedSize = null;
+
+                plusButton.addEventListener('click', function() {
+                    num++;
+                    numElement.textContent = num;
+                });
+
+                minusButton.addEventListener('click', function() {
+                    if (num > 0) {
+                        num--;
+                        numElement.textContent = num;
+                    }
+                });
+
+                addToCartButton.addEventListener('click', function() {
+                    if (selectedSize !== null && num > 0) {
+                        quantity += num;
+                        num = 0;
+                        numElement.textContent = num;
+                        updateCartQuantity(quantity);
+                        selectedSizeElement.textContent="未選擇"
+                    }
+                });
+
+                const sizeButtons = document.querySelectorAll('.size-buttons button');
+                sizeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        selectedSize = this.getAttribute('data-size');
+                        selectedSizeElement.textContent = selectedSize;
+                    });
+                });
+
+                function updateCartQuantity(quantity) {
+                    const quantityElement = document.querySelector('.quantity');
+                    quantityElement.textContent = quantity;
+                }
+            });
+        </script>
 
         <div class="sec-menu">
             <div class="tabs">
@@ -83,7 +128,6 @@
                         <p>尺寸：</p>
                         <p>23 May,2024</p>
                     </div>
-
 
                     <button id="openModalButton">留下評論</button> 
                     <div id="modal" class="modal">
@@ -124,59 +168,10 @@
         </div> 
     </main>
     
-
-
     <footer>
         <p>COPYRIGHT&copy;BRCHE CO.,LTD.ALL RIGHTS RESERVED.</p>
     </footer>
     <script src="{% static 'js/describe.js' %}"></script>
 </body>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const stars = document.querySelectorAll('.star');
-        const ratingDisplay = document.getElementById('rating');
-        let currentRating = 0;
-
-        stars.forEach(star => {
-            star.addEventListener('mouseover', function() {
-                const value = this.getAttribute('data-value');
-                highlightStars(value);
-                ratingDisplay.textContent = value;
-            });
-
-            star.addEventListener('mouseout', function() {
-                if (currentRating === 0) {
-                    resetStars();
-                    ratingDisplay.textContent = '0';
-                } else {
-                    highlightStars(currentRating);
-                    ratingDisplay.textContent = currentRating;
-                }
-            });
-
-            star.addEventListener('click', function() {
-                const value = this.getAttribute('data-value');
-                currentRating = value;
-                highlightStars(value);
-                ratingDisplay.textContent = value;
-            });
-        });
-
-        function highlightStars(value) {
-            stars.forEach(star => {
-                star.style.color = star.getAttribute('data-value') <= value ? 'Pink' : 'lavenderblush';
-            });
-        }
-
-        function resetStars() {
-            stars.forEach(star => {
-                star.style.color = 'lightgrey';
-            });
-        }
-        });
-
-    </script>
-
 
 </html>
