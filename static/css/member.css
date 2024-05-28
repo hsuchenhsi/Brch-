@@ -4,7 +4,7 @@
     object-fit: cover;
     margin: 50px;
     border-radius: 20px;
-    background-color: rgb(210, 219, 224) !important;
+    background-color: rgb(226, 230, 232) !important;
     
 }
 
@@ -14,7 +14,7 @@
 }
 
 .close {
-    color: #ff0000;
+    color: #df9861;
     margin-top: 20px;
     margin: 20px;
     font-size: 28px;
@@ -23,9 +23,11 @@
 
 .button {
     transition-duration: 0.4s;
+    height: 10px;
+    display: inline-block;
   }
   
 .information:hover, .order:hover{
-background-color: #b1c0c5;
-color: white;
+    color: rgb(87, 87, 87);
+    background-color: #d6dddf;
 }
