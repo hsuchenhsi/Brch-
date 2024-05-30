@@ -1,0 +1,8 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="fieldWrapper">
+        <label for="id_excel_file">Excel檔案:</label>
+        <input type="file" name="excel_file" id="id_excel_file">
+    </div>
+    <button type="submit">上傳檔案</button>
+</form>

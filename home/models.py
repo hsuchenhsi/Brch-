@@ -5,13 +5,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 
 class MemberData(models.Model):
-    memberNo = models.AutoField(primary_key=True)
-    memberName = models.CharField(max_length=50)
-    birthday = models.DateField()
-    gender = models.CharField(max_length=1, choices=(('男', '男'), ('女', '女')))
-    phone = models.CharField(max_length=20,default='0')
-    email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=100,default=0)
+    memberNo = models.AutoField(primary_key=True, verbose_name='會員編號')
+    memberName = models.CharField(max_length=50, verbose_name='會員姓名')
+    birthday = models.DateField(verbose_name='生日')
+    gender = models.CharField(max_length=1, choices=(('男', '男'), ('女', '女')), verbose_name='性別')
+    phone = models.CharField(max_length=20, default='', verbose_name='電話')
+    email = models.EmailField(max_length=100, verbose_name='電子郵件')
+    password = models.CharField(max_length=100, default='', verbose_name='密碼')
 
     @property
     def num_str(self):
@@ -21,20 +21,95 @@ class MemberData(models.Model):
         return self.num_str  # 在管理界面中顯示編號不是表單物件
 
 class Product(models.Model):
-    productNo = models.CharField(primary_key=True, max_length=10)
-    productName = models.CharField(max_length=100)
-    describe = models.TextField()
-    picture = models.URLField()
-    price= models.PositiveIntegerField(default=0)
+    CATEGORY_CHOICES = [
+        ('tops', '上衣'),
+        ('bottoms', '下装'),
+        ('dresses', '洋装'),
+        ('sweaters', '毛衣'),
+        ('outerwear', '外套/夾克'),
+        ('homewear', '家居'),
+        ('shoes', '鞋子'),
+        ('bags', '包包'),
+        ('accessories', '配件'),
+    ]
 
-    def __str__(self):
-        return str(self.productNo)
+    SUBCATEGORY_CHOICES = {
+        'tops': [
+            ('sleeveless', '無袖'),
+            ('short_sleeve', '短袖'),
+            ('long_sleeve', '長袖'),
+            ('shirt', '襯衫'),
+        ],
+        'bottoms': [
+            ('skirts', '裙類'),
+            ('shorts', '短褲'),
+            ('pants', '長褲'),
+            ('jeans', '牛仔褲'),
+        ],
+        'dresses': [
+            ('floral', '小碎花'),
+            ('straight', '直筒'),
+            ('sleeveless', '無袖'),
+        ],
+        'sweaters': [
+            ('sweater', '毛衣'),
+            ('knit_vest', '針織背心'),
+            ('knit_cardigan', '針織外套'),
+        ],
+        'outerwear': [
+            ('casual_jacket', '休閒外套'),
+            ('windbreaker', '防風外套'),
+            ('down_jacket', '羽絨外套'),
+            ('coat', '大衣'),
+        ],
+        'homewear': [
+            ('pajamas', '睡衣'),
+            ('robe', '睡袍'),
+        ],
+        'shoes': [
+            ('flats', '平底鞋'),
+            ('dad_sneakers', '老爹鞋'),
+            ('clogs', '洞洞鞋'),
+        ],
+        'bags': [
+            ('handbag', '手提包'),
+            ('backpack', '後背包'),
+            ('shoulder_bag', '肩背包'),
+            ('wallet', '皮夾'),
+        ],
+        'accessories': [
+            ('jewelry', '飾品'),
+            ('belt', '皮帶'),
+            ('hat', '帽子'),
+        ],
+    }
+
+    productNo = models.AutoField(primary_key=True,  verbose_name='商品編號')
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='tops', verbose_name='商品類別')
+    subcategory = models.CharField(max_length=50, default='sleeveless', verbose_name='商品子類別')
+    productName = models.CharField(max_length=100, verbose_name='商品名稱')
+    describe = models.TextField(verbose_name='商品描述')
+    picture = models.URLField(verbose_name='圖片')
+    price = models.PositiveIntegerField(default=0, verbose_name='價格')
+
+    @property
+    def num_str(self):
+        return f"P{self.productNo:04d}" 
     
+    def __str__(self):
+        return f"{self.num_str} - {self.productName}"
+
+
+
+    def save(self, *args, **kwargs):
+        self.subcategory = dict(self.__class__.SUBCATEGORY_CHOICES[self.category]).get(self.subcategory, self.subcategory)
+        super(Product, self).save(*args, **kwargs)
+
 class Store(models.Model):
-    storeNo = models.AutoField(primary_key=True)
-    productNo = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.CharField(max_length=1, choices=(('S', 'S'), ('M', 'M'), ('L', 'L'), ('F', 'F')), default='S')
-    quantity = models.PositiveIntegerField()
+    storeNo = models.AutoField(primary_key=True, verbose_name='店舖編號')
+    productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
+    size = models.CharField(max_length=2, choices=(('XS', 'XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), default='S', verbose_name='尺寸')
+    quantity = models.PositiveIntegerField(verbose_name='數量')
 
     def num_str(self):
         return f"s{self.storeNo:04d}" 
@@ -43,13 +118,13 @@ class Store(models.Model):
         return str(self.storeNo)
                    
 class Order(models.Model):
-    orderNo = models.AutoField(primary_key=True)
-    menberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE)
-    orderdate = models.DateField(auto_now_add=True)
-    pay = models.CharField(max_length=10, choices=(('信用卡', '信用卡'), ('貨到付款', '貨到付款'), ('轉帳', '轉帳')))
-    total = models.PositiveIntegerField()
-    orderStatus = models.CharField(default='已接受訂單', max_length=5, editable=False)
-    address = models.CharField(max_length=100)
+    orderNo = models.AutoField(primary_key=True, verbose_name='訂單編號')
+    menberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE, verbose_name='會員編號')
+    orderdate = models.DateField(auto_now_add=True, verbose_name='訂單日期')
+    pay = models.CharField(max_length=10, choices=(('信用卡', '信用卡'), ('貨到付款', '貨到付款'), ('轉帳', '轉帳')), verbose_name='付款方式')
+    total = models.PositiveIntegerField(verbose_name='總金額')
+    orderStatus = models.CharField(default='已接受訂單', max_length=5, editable=False, verbose_name='訂單狀態')
+    address = models.CharField(max_length=100, verbose_name='寄送地址')
 
     def __str__(self):
         return str(self.orderNo)
@@ -60,47 +135,42 @@ class Order(models.Model):
         return f"{date_str}{self.orderNo:03d}"
 
 class OrderDetail(models.Model):
-    orderdetailNo = models.AutoField(primary_key=True)
-    orderNo = models.ForeignKey(Order, on_delete=models.CASCADE)
-    productNo = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')))
-    quantity= models.PositiveIntegerField()
-    singlePrice = models.PositiveIntegerField()
+    orderdetailNo = models.AutoField(primary_key=True, verbose_name='訂單明細編號')
+    orderNo = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='訂單編號')
+    productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
+    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), verbose_name='尺寸')
+    quantity= models.PositiveIntegerField(verbose_name='數量')
+    singlePrice = models.PositiveIntegerField(verbose_name='單價')
 
     def __str__(self):
         return str(self.orderdetailNo)
 
 class ShopingCart(models.Model):
-    shopingcartNo = models.AutoField(primary_key=True)
-    menberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE)
-    productNo = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('F', 'F')))
-    quantity = models.PositiveIntegerField()
+    shopingcartNo = models.AutoField(primary_key=True, verbose_name='購物車編號')
+    menberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE, verbose_name='會員編號')
+    productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
+    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), verbose_name='尺寸')
+    quantity = models.PositiveIntegerField(verbose_name='數量')
 
     def __str__(self):
         return str(self.shopingcartNo)
                    
 class Comment(models.Model):
-    commentNo = models.AutoField(primary_key=True)
-    memberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE)
-    orderNo = models.ForeignKey(Order, on_delete=models.CASCADE)
-    productNo = models.ForeignKey(Product, on_delete=models.CASCADE)
-    score = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
-    message = models.TextField()
-    commentDate = models.DateField(auto_now_add=True)
+    commentNo = models.AutoField(primary_key=True, verbose_name='評論編號')
+    memberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE, verbose_name='會員編號')
+    orderNo = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='訂單編號')
+    productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
+    score = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], verbose_name='評分')
+    message = models.TextField(verbose_name='評論內容')
+    commentDate = models.DateField(auto_now_add=True, verbose_name='評論日期')
 
     def __str__(self):
         return str(self.commentNo)
 
+class Post(models.Model):
+    username = models.CharField(max_length=100, verbose_name='用戶名稱')
+    email = models.EmailField(verbose_name='電子郵件')
+    password = models.CharField(max_length=100, verbose_name='密碼')
 
-
-# ------------------------
-from django.db import models
-
-class CustomUser(models.Model):
-    username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    
     def __str__(self):
-        return self.username
+        return self.userName

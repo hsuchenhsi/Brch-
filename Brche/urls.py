@@ -30,7 +30,10 @@ urlpatterns = [
     path("information.html/", views.information, name='order'),
     path("user_login/", views.user_login, name='user_login'),
     path("member.html/", views.member, name='member'),
-
+    path('manage_products.html/', views.manage_products, name='manage_products'),
+    path('delete/<str:productNo>/', views.delete_product, name='delete_product'),
+    path('edit/<str:productNo>/', views.edit_product, name='edit_product'),
+    path('upload.html/', views.upload_file, name='upload_file'),
 
 
 ]

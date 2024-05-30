@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>刪除商品</title>
+</head>
+<body>
+    <h1>刪除商品</h1>
+    <p>確認刪除此商品嗎???</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">確認刪除</button>
+    </form>
+</body>
+</html>

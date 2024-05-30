@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>編輯商品</title>
+</head>
+<body>
+    <h1>編輯商品資料</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">修正完成</button>
+    </form>
+</body>
+</html>
