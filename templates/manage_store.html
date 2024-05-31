@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>庫存管理</title>
+</head>
+<body>
+    <h1>新增庫存</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="fieldWrapper">
+            <label for="id_productNo">商品編號:</label>
+            {{ store_form.productNo }}
+        </div>
+        <div class="fieldWrapper">
+            <label for="id_size">尺寸:</label>
+            {{ store_form.size }}
+        </div>
+        <div class="fieldWrapper">
+            <label for="id_quantity">數量:</label>
+            {{ store_form.quantity }}
+        </div>
+        <button type="submit">新增庫存</button>
+    </form>
+
+    <h1>現有庫存</h1>
+    <ul>
+        {% for store in stores %}
+            <li>
+                {{ store.storeNo }} - {{ store.productNo }} - {{ store.size }} - {{ store.quantity }}
+                <a href="{% url 'edit_store' store.storeNo %}">修改庫存資料</a>
+                <a href="{% url 'delete_store' store.storeNo %}">刪除庫存</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

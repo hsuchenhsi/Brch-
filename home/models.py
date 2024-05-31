@@ -106,14 +106,13 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
 class Store(models.Model):
-    storeNo = models.AutoField(primary_key=True, verbose_name='店舖編號')
+    storeNo = models.AutoField(primary_key=True, verbose_name='庫存編號')
     productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
-    size = models.CharField(max_length=2, choices=(('XS', 'XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), default='S', verbose_name='尺寸')
+    size = models.CharField(max_length=2, choices=(('XS', 'XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL'),('F','F')), default='S', verbose_name='尺寸')
     quantity = models.PositiveIntegerField(verbose_name='數量')
 
-    def num_str(self):
-        return f"s{self.storeNo:04d}" 
-    
+
+
     def __str__(self):
         return str(self.storeNo)
                    
@@ -138,7 +137,7 @@ class OrderDetail(models.Model):
     orderdetailNo = models.AutoField(primary_key=True, verbose_name='訂單明細編號')
     orderNo = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='訂單編號')
     productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
-    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), verbose_name='尺寸')
+    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL'),('F','F')), verbose_name='尺寸')
     quantity= models.PositiveIntegerField(verbose_name='數量')
     singlePrice = models.PositiveIntegerField(verbose_name='單價')
 
@@ -149,7 +148,7 @@ class ShopingCart(models.Model):
     shopingcartNo = models.AutoField(primary_key=True, verbose_name='購物車編號')
     menberNo = models.ForeignKey(MemberData, on_delete=models.CASCADE, verbose_name='會員編號')
     productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
-    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')), verbose_name='尺寸')
+    size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL'),('F','F')), verbose_name='尺寸')
     quantity = models.PositiveIntegerField(verbose_name='數量')
 
     def __str__(self):

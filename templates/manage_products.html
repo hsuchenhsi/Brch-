@@ -43,11 +43,11 @@
         {% csrf_token %}
         <div class="fieldWrapper">
             <label for="id_productNo">編號:</label>
-            {{ form.productNo }}
+            {{ product_form.productNo }}
         </div>
         <div class="fieldWrapper">
             <label for="id_category">主分類:</label>
-            {{ form.category }}
+            {{ product_form.category }}
         </div>
         <div class="fieldWrapper">
             <label for="id_subcategory">細分類</label>
@@ -57,19 +57,19 @@
         </div>
         <div class="fieldWrapper">
             <label for="id_productName">名稱:</label>
-            {{ form.productName }}
+            {{ product_form.productName }}
         </div>
         <div class="fieldWrapper">
             <label for="id_describe">描述:</label>
-            {{ form.describe }}
+            {{ product_form.describe }}
         </div>
         <div class="fieldWrapper">
             <label for="id_picture">圖片:</label>
-            {{ form.picture }}
+            {{ product_form.picture }}
         </div>
         <div class="fieldWrapper">
             <label for="id_price">價格:</label>
-            {{ form.price }}
+            {{ product_form.price }}
         </div>
         <button type="submit">新增商品</button>
     </form>
@@ -78,11 +78,12 @@
     <ul>
         {% for product in products %}
             <li>
-                {{ product.productNo }} - {{ product.productName}}
+                {{ product.productNo }} - {{ product.productName }}
                 <a href="{% url 'edit_product' product.productNo %}">修改商品資料</a>
                 <a href="{% url 'delete_product' product.productNo %}">刪除商品</a>
             </li>
         {% endfor %}
     </ul>
+
 </body>
 </html>

@@ -34,6 +34,9 @@ urlpatterns = [
     path('delete/<str:productNo>/', views.delete_product, name='delete_product'),
     path('edit/<str:productNo>/', views.edit_product, name='edit_product'),
     path('upload.html/', views.upload_file, name='upload_file'),
+    path('manage_store.html/', views.manage_store, name='manage_store'),
+    path('delete_store/<str:storeNo>/', views.delete_store, name='delete_store'),
+    path('edit_store/<str:storeNo>/', views.edit_store, name='edit_store'),
 
 
 ]

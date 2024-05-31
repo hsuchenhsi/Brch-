@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 
-from home.models import MemberData,Product
+from home.models import MemberData,Product,Store
 
 # Create your views here.
 def frontpage(request):
@@ -55,24 +55,29 @@ def user_login(request):
         return render(request, 'frontpage.html')
 
 from django.shortcuts import render, redirect
-from .forms import ProductForm
+from .forms import ProductForm,StoreForm
 from django.contrib import messages
 def manage_products(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '新增商品成功！')  # 在成功保存後添加成功消息
-            return redirect('manage_products')  # 重定向到商品管理頁面
+        product_form = ProductForm(request.POST)
+        store_form = StoreForm(request.POST)
+        if product_form.is_valid():
+            product_form.save()
+            messages.success(request, '新增商品成功！')
+            return redirect('manage_products')
     else:
-        form = ProductForm()
+        product_form = ProductForm()
+        store_form = StoreForm()
+
 
     products = Product.objects.all()
-    context = {
-        'form': form,
+    stores = Store.objects.all()
+    return render(request, 'manage_products.html', {
+        'product_form': product_form,
+        'store_form': store_form,
         'products': products,
-    }
-    return render(request, 'manage_products.html', context)
+        'stores': stores
+    })
 
 def delete_product(request, productNo):
     product = get_object_or_404(Product, productNo=productNo)
@@ -96,7 +101,7 @@ def edit_product(request, productNo):
 
 from django.conf import settings
 from .forms import UploadFileForm
-from import_export import resources
+
 from import_export.fields import Field 
 from django.http import HttpResponse
 
@@ -111,7 +116,7 @@ def upload_file(request):
             if pd.isna(row['category']) or pd.isna(row['subcategory']) or pd.isna(row['name']) or pd.isna(row['description']) or pd.isna(row['photo-src']) or pd.isna(row['price']):
                 # 如果有空值或nan值，跳过这一行
                 continue
-            # 使用从 Excel 中读取的数据创建新的数据库记录
+            #Excel讀取的資料
             Product.objects.create(
                 category=row['category'],
                 subcategory=row['subcategory'],
@@ -122,3 +127,39 @@ def upload_file(request):
             )
         return HttpResponse('上傳成功')
     return render(request, 'upload.html')
+
+def manage_store(request):
+    if request.method == 'POST':
+        store_form = StoreForm(request.POST)
+        if store_form.is_valid():
+            store_form.save()
+            messages.success(request, '新增庫存成功！')
+            return redirect('manage_store')
+    else:
+        store_form = StoreForm()
+
+    stores = Store.objects.all()
+    return render(request, 'manage_store.html', {
+        'store_form': store_form,
+        'stores': stores
+    })
+
+def delete_store(request, storeNo):
+    store = get_object_or_404(Store, storeNo=storeNo)
+    if request.method == 'POST':
+        store.delete()
+        messages.success(request, '庫存已刪除！')
+        return redirect('manage_store')
+    return render(request, 'delete_store.html', {'store': store})
+
+def edit_store(request, storeNo):
+    store = get_object_or_404(Store, storeNo=storeNo)
+    if request.method == 'POST':
+        form = StoreForm(request.POST, instance=store)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_store')
+    else:
+        form = StoreForm(instance=store)
+
+    return render(request, 'edit_store.html', {'store_form': form})
