@@ -124,14 +124,15 @@ class Order(models.Model):
     total = models.PositiveIntegerField(verbose_name='總金額')
     orderStatus = models.CharField(default='已接受訂單', max_length=5, editable=False, verbose_name='訂單狀態')
     address = models.CharField(max_length=100, verbose_name='寄送地址')
-
-    def __str__(self):
-        return str(self.orderNo)
     
+  
     def num_str(self):
         today = datetime.today()
         date_str = today.strftime("%Y%m%d")
         return f"{date_str}{self.orderNo:03d}"
+    
+    def __str__(self):
+        return self.num_str()
 
 class OrderDetail(models.Model):
     orderdetailNo = models.AutoField(primary_key=True, verbose_name='訂單明細編號')

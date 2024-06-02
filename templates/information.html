@@ -12,25 +12,25 @@
         <h1>帳戶資訊</h1>
     </header>
 
-    <form>
+    <form method="POST">
+        {% csrf_token %}
         <h2></h2>
 
         <div class="list">
             <div>
-                <label for="name">編號：</label>
-                <a type='text', id='no', name='no', value='{{ member.memberNo }}'></a>
+                <label for="name">會員編號：</label>
+                <span>{{ member.memberNo }}</span>
             </div>
             <div>
                 <label for="name">姓名：</label>
-                <a type='text', id='name', name='name', value='{{ member.memberName }}'></a>
+                <input type='text', id='name', name='name', value='{{ member.memberName }}'>
             </div>
             <div>
                 <label for="name">生日：</label>
-                <a type='text', id='name', name='name', value='{{ member.birthday }}'></a>
-            </div>
+                <input type='text', id='name', name='name', value='{{ member.birthday }}'>
             <div>
                 <label for="name">性別：</label>
-                <a type='text', id='name', name='name', value='{{ member.gender }}'></a>
+                <input type='text', id='name', name='name', value='{{ member.gender }}'>
             </div>
             <div>
                 <label for="name">電話號碼：</label>

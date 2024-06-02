@@ -21,12 +21,22 @@ def A02(request):
 def order(request):
     return render(request,'order.html')
 
+
 def information(request):
-    try: 
-        member = MemberData.objects.get(menberName="test01") #讀取一筆資料
-    except:
-        errormessage = " (讀取錯誤!)"
-    return render(request, 'information.html', locals())
+    errormessage = ""  
+    member = None  
+    try:
+        
+        current_member = request.user  # 获取当前登录的用户
+        member = MemberData.objects.get(memberName=current_member.username) 
+
+    except MemberData.DoesNotExist:
+        errormessage = " (找不到该会员的资料)"
+    except Exception as e:
+        errormessage = f" (读取错误: {e})"  # 錯誤信息存储在错误消息中
+
+    return render(request, 'information.html', {'member': member, 'errormessage': errormessage})
+
 
 
 def member(request):
