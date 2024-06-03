@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/describe.css' %}">
     <!-- 星星的css -->
     <style>
-        /* 添加必要的CSS样式 */
+        /* 添加必要的CSS樣式 */
     </style>
 </head>
 <body>
@@ -21,8 +21,8 @@
             </div>
         
             <div class="pd">
-                <h2>我不知道這要叫什麼</h2>
-                <h2>NT$&nbsp;1680</h2>
+                <h2>{{ product.productName }}</h2>
+                <h2>NT$&nbsp;{{ product.price }}</h2>
                 <h3>尺寸：<span class="selected-size">未選擇</span></h3>
                 <div class="size-buttons">
                     <button data-size="XS">XS</button>
@@ -101,7 +101,7 @@
             
             <div class="contents" style="padding: 40px 240px 40px 240px">
                 <div class="content active" id="tab1-content">
-                    <p>是一款時尚的衣服，具有獨特的設計和高品質的製作。有多種尺寸可供選擇，包括 XS、S、M、L 和 XL。您可以根據自己的喜好和需要選擇適合的尺寸。此外，您也可以選擇您想購買的數量，方便您根據需求調整。這款衣服不僅適合日常穿著，還可以搭配不同的服飾搭配，展現出不同的風格。如果您喜歡這款衣服，歡迎加入購物車或立即購買。</p>
+                    <p>{{ product.description }}</p>
                 </div>
                 <div class="content" id="tab2-content">
                     <p>XS<br>S<br>M<br>L<br>XL</p>

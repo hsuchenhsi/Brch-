@@ -13,8 +13,12 @@ def login(request):
 def A01(request):
     return render(request,'A01.html')
 
-def describe(request):
-    return render(request,'describe.html')
+def describe(request, product_no):
+    product = get_object_or_404(Product, productNo=product_no)
+    context = {
+        'product': product,
+    }
+    return render(request, 'describe.html', context)
 
 def A02(request):
     return render(request,'A02.html')

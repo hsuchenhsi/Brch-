@@ -1,4 +1,4 @@
-<!-- product_list.html -->
+<!-- frontpage.html -->
 
 {% load static %}
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
         <div class="list">
             {% for product in products %}
             <div class="product">
-                <a href="{% url 'describe' %}">
+                <a href="{% url 'describe' product_no=product.productNo %}">  <!-- 修改這裡 -->
                     <img src="{{ product.picture }}" alt="">
                     <p>{{ product.productName }}</p>
                     <span>NT$ {{ product.price }}</span>
