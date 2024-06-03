@@ -39,4 +39,5 @@ urlpatterns = [
     path('edit_store/<str:storeNo>/', views.edit_store, name='edit_store'),
 
 
+
 ]

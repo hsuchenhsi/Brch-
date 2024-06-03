@@ -4,7 +4,8 @@ from home.models import MemberData,Product,Store
 
 # Create your views here.
 def frontpage(request):
-    return render(request,'frontpage.html')
+    products = Product.objects.all()
+    return render(request, 'frontpage.html', {'products': products})
 
 def login(request):
     return render(request,'login.html')
@@ -37,7 +38,7 @@ def information(request):
 
     return render(request, 'information.html', {'member': member, 'errormessage': errormessage})
 
-
+frontpage
 
 def member(request):
     return render(request, 'member.html')
