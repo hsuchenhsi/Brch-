@@ -44,53 +44,7 @@
             </div>
         </div>
         
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const numElement = document.querySelector('.num');
-                const plusButton = document.querySelector('.plus-btn');
-                const minusButton = document.querySelector('.minus-btn');
-                const addToCartButton = document.querySelector('.addToCart');
-                const selectedSizeElement = document.querySelector('.selected-size');
-                let num = 0;
-                let quantity = 0;
-                let selectedSize = null;
-
-                plusButton.addEventListener('click', function() {
-                    num++;
-                    numElement.textContent = num;
-                });
-
-                minusButton.addEventListener('click', function() {
-                    if (num > 0) {
-                        num--;
-                        numElement.textContent = num;
-                    }
-                });
-
-                addToCartButton.addEventListener('click', function() {
-                    if (selectedSize !== null && num > 0) {
-                        quantity += num;
-                        num = 0;
-                        numElement.textContent = num;
-                        updateCartQuantity(quantity);
-                        selectedSizeElement.textContent="未選擇"
-                    }
-                });
-
-                const sizeButtons = document.querySelectorAll('.size-buttons button');
-                sizeButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        selectedSize = this.getAttribute('data-size');
-                        selectedSizeElement.textContent = selectedSize;
-                    });
-                });
-
-                function updateCartQuantity(quantity) {
-                    const quantityElement = document.querySelector('.quantity');
-                    quantityElement.textContent = quantity;
-                }
-            });
-        </script>
+        
 
         <div class="sec-menu">
             <div class="tabs">
@@ -156,7 +110,6 @@
                             </div>
                             <div>-</div>
                             <div>
-                                <button>取消</button>
                                 <button>提交</button>
                             </div> 
                             
