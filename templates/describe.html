@@ -17,7 +17,7 @@
     <main>
         <div class="product1">
             <div class="describe-img" style="padding: 40px 40px 40px 120px;">
-                <img src="{% static 'img/2.jpg' %}" alt="describe" width="600">
+                <img src="{{ product.picture }}" alt="describe" width="600">
             </div>
         
             <div class="pd">
@@ -55,7 +55,7 @@
             
             <div class="contents" style="padding: 40px 240px 40px 240px">
                 <div class="content active" id="tab1-content">
-                    <p>{{ product.description }}</p>
+                    <p>{{ product.describe }}</p>
                 </div>
                 <div class="content" id="tab2-content">
                     <p>XS<br>S<br>M<br>L<br>XL</p>
