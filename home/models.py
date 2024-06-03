@@ -11,6 +11,7 @@ class MemberData(models.Model):
     gender = models.CharField(max_length=1, choices=(('男', '男'), ('女', '女')), verbose_name='性別')
     phone = models.CharField(max_length=20, default='', verbose_name='電話')
     email = models.EmailField(max_length=100, verbose_name='電子郵件')
+    address = models.CharField(max_length=20, default='', verbose_name='地址')
     password = models.CharField(max_length=100, default='', verbose_name='密碼')
 
     @property

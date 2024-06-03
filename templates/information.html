@@ -9,40 +9,63 @@
 </head>
 <body>
     <header>
-        <h1>帳戶資訊</h1>
+        <div class="title">
+            <h1 id="title"><a href="/">Brch&eacute;</a></h1>
+            <nav class="rtop">
+
+                <div><span class="x">&times;</span></div>
+
+                <div class="user">
+                    <input type="image" src="{% static 'img/user.png' %}"  alt="user" name="user" id="user"; width="60"/>    
+                        <div id="modal-member" class="modal" >
+                            <span class="close">&times;</span>
+                            {% include 'member.html' %}    
+                        </div>
+                    
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <form method="POST">
-        {% csrf_token %}
-        <h2></h2>
+    <form>
+        <h2>帳戶資訊</h2>
 
         <div class="list">
             <div>
-                <label for="name">會員編號：</label>
-                <span>{{ member.memberNo }}</span>
+                <label for="name">編號：</label>
+                <a type='text', id='no', name='no', value='{{ member.memberNo }}'></a>
             </div>
             <div>
                 <label for="name">姓名：</label>
-                <input type='text', id='name', name='name', value='{{ member.memberName }}'>
+                <a type='text', id='name', name='name', value='{{ member.memberName }}'></a>
             </div>
             <div>
                 <label for="name">生日：</label>
-                <input type='text', id='name', name='name', value='{{ member.birthday }}'>
+                <a type='text', id='birth', name='birth', value='{{ member.birthday }}'></a>
+            </div>
             <div>
                 <label for="name">性別：</label>
-                <input type='text', id='name', name='name', value='{{ member.gender }}'>
+                <a type='text', id='gender', name='gender', value='{{ member.gender }}'></a>
             </div>
             <div>
                 <label for="name">電話號碼：</label>
-                <input type='text', id='name', name='name', value='{{ member.phone }}'>
+                <input type='text', id='phone', name='phone', value='{{ member.phone }}'>
             </div>
             <div>
                 <label for="name">電子郵件：</label>
-                <input type='text', id='name', name='name', value='{{ member.email }}'>
+                <input type='text', id='email', name='email', value='{{ member.email }}'>
+            </div>
+            <div>
+                <label for="name">地址：</label>
+                <input type='text', id='address', name='address', value='{{ member.address }}'>
             </div>
             <button type="submit">儲存</button>
         </div>
     </form>
+
+
+ 
+    <script src="{% static 'js/header.js' %}"></script>
 
 </body>
 </html>
