@@ -136,3 +136,49 @@ ul{
     left:-1px;
     border-right: 5px;
 }
+
+
+/*color_seal*/
+
+
+/* 上面 */
+h1#title a {
+    color: #000000;
+}/*大的Brche'*/
+
+
+.choose a {
+    color: #333333; /* 分類的顏色 */
+}
+
+.choose ul {
+    background-color: rgb(237, 237, 237); 
+}/* 子分類背景顏色 */
+
+
+
+/* 購物車icon有關 */
+.shopping span {
+    background-color: black; /* 數字圈圈的底 */
+    color: white; /* 數字 */
+}
+
+/* header 背景顏色 */
+header {
+    background-color: rgb(206, 206, 206);
+}
+
+/* 購物車點進去 */
+.card {
+    background-color: #dfdfdf; /* 那個底 */
+}
+
+.card .checkOut div {
+    background-color: rgb(0, 0, 0); /* close的背景顏色 */
+    color: aliceblue; /* close文字顏色 */
+}
+
+.card .checkOut div:nth-child(2) {
+    background-color: rgb(186, 186, 186); /* 旁邊那個按鈕背景顏色 */
+    color:black /*0文字顏色*/
+}

@@ -34,6 +34,7 @@
                 <h3>數量：<span class="num">0</span></h3>
                 <div>
                     <button class="minus-btn">-</button>
+                    <span class="numt">0</span>
                     <button class="plus-btn">+</button>
                 </div>
                 <div><br></div>
@@ -41,11 +42,15 @@
                     <button class="addToCart">加入購物車</button>
                     <button>立即購買</button>
                 </div>
+                <h6>
+                    尺寸
+                    <span class="isize"> </span>
+                    剩餘庫存量：
+                    <span class="sizeNum"></span>
+                </h6>
             </div>
         </div>
         
-        
-
         <div class="sec-menu">
             <div class="tabs">
                 <div class="tab active" data-tab="tab1">描述</div>
@@ -126,5 +131,4 @@
     </footer>
     <script src="{% static 'js/describe.js' %}"></script>
 </body>
-
 </html>

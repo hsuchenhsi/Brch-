@@ -178,3 +178,15 @@ def edit_store(request, storeNo):
         form = StoreForm(instance=store)
 
     return render(request, 'edit_store.html', {'store_form': form})
+from django.http import JsonResponse
+from .models import Store
+
+def get_quantity(request, size):
+    try:
+        store_entry = Store.objects.get(size=size)
+        quantity = store_entry.quantity
+        return JsonResponse({'status': 'success', 'quantity': quantity})
+    except Store.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Size not found in store'}, status=404)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)

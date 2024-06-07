@@ -37,6 +37,7 @@ urlpatterns = [
     path('manage_store.html/', views.manage_store, name='manage_store'),
     path('delete_store/<str:storeNo>/', views.delete_store, name='delete_store'),
     path('edit_store/<str:storeNo>/', views.edit_store, name='edit_store'),
+    path('get_quantity/<str:size>/', views.get_quantity, name='get_quantity'),
 
 
 

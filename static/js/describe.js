@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function highlightStars(value) {
         stars.forEach(star => {
-            star.style.color = star.getAttribute('data-value') <= value ? 'Pink' : 'lavenderblush';
+            star.style.color = star.getAttribute('data-value') <= value ? 'Pink' : 'lightgrey';
         });
     }
 
@@ -80,10 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 購物車數量和尺寸選擇相關
     const numElement = document.querySelector('.num');
+    const numM = document.querySelector('.numt');
     const plusButton = document.querySelector('.plus-btn');
     const minusButton = document.querySelector('.minus-btn');
     const addToCartButton = document.querySelector('.addToCart');
     const selectedSizeElement = document.querySelector('.selected-size');
+    const isizeElement = document.querySelector('.isize');
+    const sizeNumElement = document.querySelector('.sizeNum');
     let num = 0;
     let quantity = 0;
     let selectedSize = null;
@@ -91,12 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
     plusButton.addEventListener('click', function() {
         num++;
         numElement.textContent = num;
+        numM.textContent = num;
     });
 
     minusButton.addEventListener('click', function() {
         if (num > 0) {
             num--;
             numElement.textContent = num;
+            numM.textContent = num;
         }
     });
 
@@ -105,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             quantity += num;
             num = 0;
             numElement.textContent = num;
+            numM.textContent = num;
             updateCartQuantity(quantity);
             selectedSizeElement.textContent = "未選擇";
         }
@@ -115,8 +121,29 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             selectedSize = this.getAttribute('data-size');
             selectedSizeElement.textContent = selectedSize;
+            isizeElement.textContent = selectedSize; // 更新選擇的尺寸顯示
+
+            // Fetch quantity from backend based on selected size
+            fetchQuantity(selectedSize);
         });
     });
+
+    function fetchQuantity(size) {
+        // Replace '/get_quantity/' with your Django view URL to fetch quantity
+        fetch(`/get_quantity/${size}/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    sizeNumElement.textContent = data.quantity;
+                } else {
+                    sizeNumElement.textContent = '0'; // Handle error case
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching quantity:', error);
+                sizeNumElement.textContent = '0';
+            });
+    }
 
     function updateCartQuantity(quantity) {
         const quantityElement = document.querySelector('.quantity');
@@ -129,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitButton.onclick = function() {
         const comment = textarea.value;
-        if (comment.length < 5 || currentRating === 0 || selectedSize === '') {
+        if (comment.length < 5 || currentRating === 0 || selectedSize === null) {
             alert('請填寫完整評論、評分和尺寸');
             return;
         }
