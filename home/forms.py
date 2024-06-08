@@ -35,7 +35,7 @@ class UserRegisterForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-    def clean(self):
+    def clean(self):2
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
         password_confirm = cleaned_data.get("password_confirm")
