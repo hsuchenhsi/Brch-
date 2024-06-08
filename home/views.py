@@ -33,7 +33,7 @@ def register(request):
             return redirect('login')  # Redirect to login page after successful registration
     return render(request, 'login.html', locals()) 
 
-def logins(request):
+def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
