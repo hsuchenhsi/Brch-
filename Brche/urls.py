@@ -23,6 +23,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.frontpage, name='header'),
     path("login.html/", views.login, name='login'),
+    path('register/', views.register, name='register'),
+    path('logout/',views.logouts),
     path("A01.html/", views.A01, name='A01'),
     path('describe/<str:product_no>/', views.describe, name='describe'),  # 設置 describe 的路由，並接收 product_no 參數
     path("A02.html/", views.A02, name='A02'),

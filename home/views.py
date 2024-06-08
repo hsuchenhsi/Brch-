@@ -1,15 +1,52 @@
-from django.shortcuts import render,get_object_or_404
-
+from django.shortcuts import render,get_object_or_404,redirect
+from .forms import *
 from home.models import MemberData,Product,Store
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def frontpage(request):
     products = Product.objects.all()
     return render(request, 'frontpage.html', {'products': products})
 
-def login(request):
-    return render(request,'login.html')
+def logouts(reqiest):
+    logout(reqiest)
+    return redirect('/')
 
+def register(request):
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        password2=request.POST.get('password2')
+        if password2 != password:
+            msg='密碼錯誤。'
+        elif username=='':
+            msg='用戶名不得為空。'
+        elif email=='':
+            msg='郵箱不得為空。'
+        elif User.objects.filter(username=username).exists():
+            msg='用戶名已存在'
+        else:
+            user = User.objects.create_user(username=username, password=password, email=email)
+            user.save()
+            msg='註冊成功！請登入。'
+            return redirect('login')  # Redirect to login page after successful registration
+    return render(request, 'login.html', locals()) 
+
+def logins(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            messages.success(request, '登入成功！')
+            return redirect('/')  # Replace 'home' with your home page URL
+        else:
+            msg='error'
+            messages.error(request, '登入失敗，請檢查您的用戶名和密碼。')
+    return render(request, 'login.html', locals())
+ 
 def A01(request):
     return render(request,'A01.html')
 
