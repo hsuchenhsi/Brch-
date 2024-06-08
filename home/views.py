@@ -1,7 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .forms import *
+from django.contrib import messages
 from home.models import MemberData,Product,Store
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+
 
 # Create your views here.
 def frontpage(request):
@@ -33,7 +36,7 @@ def register(request):
             return redirect('login')  # Redirect to login page after successful registration
     return render(request, 'login.html', locals()) 
 
-def login(request):
+def logins(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

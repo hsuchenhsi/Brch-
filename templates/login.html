@@ -5,30 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>可以滑動的登入/註冊</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
 </head>
 <body>
     <div class="container">
         <button id="close" class="close-button">&nbsp;X&nbsp;</button>
         <div class="form-box">
 
-            <form method="post" action="{% url 'user_login' %}">
+            <form method="post" action="/register/">
                 {% csrf_token %}
                 <h1>Register</h1>
                 <input id="username" type="text" name="username" placeholder="username">
                 <input id="email" type="email" name="email" placeholder="e-mail">
                 <input id="password" type="password" name="password" placeholder="password">
-                <input id="confirm_password" type="password" name="confirm_password" placeholder="password again">
+                <input id="password2" type="password" name="password2" placeholder="password again">
                 <button type="submit">註冊</button>
+                <p>{{ msg }}</p>
             </form>
             
             
 
             <div class="login-box ">
                 <h1>Login</h1>
-                <input type="email" placeholder="e-mail">
-                <input type="password" placeholder="password">
-                <button>登入</button>
+                <form action="/login/" method="post">
+                    {% csrf_token %}
+                    <input id="username" type="text" name="username" placeholder="username">
+                    <input id="password" type="password" name="password" placeholder="password">
+                    <input type="submit" value="登入">
+                </form>
+                
+                <p>{{ msg }}</p>
             </div>
             </div>
             <div class="con-box left">
@@ -64,4 +70,3 @@
                 document.getElementById('close').addEventListener('click', function() { history.back(); }); 
             </script>
 </body>
-</html>
