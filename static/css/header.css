@@ -33,7 +33,13 @@
 }
 .shopping{
     position: relative;
-    text-align:right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 9px;
+    right:1%;
 }
 
 .shopping span{
@@ -96,6 +102,7 @@
     justify-content: center;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .card .checkOut div:nth-child(2){
@@ -110,6 +117,9 @@
     transform: translateX(-200px);
 }
 
+.checkOut{
+    margin-top: 10px;
+}
 /* .list .item{
     text-align: center;
     background-color: #dfdfdf;
@@ -127,6 +137,7 @@ header{
 h1{
     font-family:"Optima",sans-serif;
     font-size: 56px;
+    font-weight: bold;
     position: absolute;
     left:45%;
     top: 0px;;
@@ -143,8 +154,6 @@ h1{
     padding-right: 15px;
 }
 
-
-
 header a{
     color:black;
     text-decoration: none;}
@@ -152,7 +161,9 @@ header a{
 
 header a:hover{
     color: rgb(128, 103, 119);
+    text-decoration-line: none;
 }
+
 header ul{
     position: absolute;
     left:10vw;
@@ -179,9 +190,6 @@ ul{
     list-style-type: none;
 }
 
-.menu{
-    padding-top: 30px;
-}
 
 
 .choose{

@@ -17,7 +17,7 @@ header {
     margin: 0 auto;
     padding: 0 20px;
 }
-#title a {
+.title a {
     color: #000000;
     text-decoration: none;
     font-family:"Optima",sans-serif;
@@ -28,6 +28,12 @@ header {
     line-height: 80px;
     padding-top: 15px;
 }
+
+.title a:hover {
+    color: rgb(128, 103, 119);
+    text-decoration-line: none;
+}
+
 .b {
     display: flex;
     align-items: center;

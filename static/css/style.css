@@ -16,15 +16,22 @@
 
 
  /* main 商品顯示 ------------------------------ */
+
  .classification{
     font-size: 60px;
     background-color: rgb(225, 210, 209);
     text-align: center;
+    
 }
 
 .classification h2{
     font-size: 36px;
     font-family:'Times New Roman', Times, serif;
+
+}
+.body{
+    background-color: rgba(225, 210, 209, 0.243);
+
 }
 
 .list{
@@ -43,6 +50,11 @@
     align-items: center;
     text-align: center;
  }
+
+.product a:hover{
+    color: rgb(128, 103, 119);
+    text-decoration-line: none;
+}
 
  .product a {
     color: black; 
@@ -76,4 +88,6 @@
 }
 
 
-
+.carouselExampleIndicators{
+    background-color: aqua;
+}

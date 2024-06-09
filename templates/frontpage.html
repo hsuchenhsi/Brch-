@@ -61,20 +61,22 @@
     <!-- 輪播圖結束 -->
 
     <main>
-        <div class="classification">
-            <h2>HOT&nbsp;&nbsp;SALE&nbsp;&nbsp;ITEM&nbsp;&nbsp;&nbsp;&nbsp;熱銷商品</h2>
-        </div>
-
-        <div class="list">
-            {% for product in products %}
-            <div class="product">
-                <a href="{% url 'describe' product_no=product.productNo %}">  <!-- 修改這裡 -->
-                    <img src="{{ product.picture }}" alt="">
-                    <p>{{ product.productName }}</p>
-                    <span>NT$ {{ product.price }}</span>
-                </a>
+        <div class="hot">
+            <div class="classification">
+                <h2>HOT&nbsp;&nbsp;SALE&nbsp;&nbsp;ITEM&nbsp;&nbsp;&nbsp;&nbsp;熱銷商品</h2>
             </div>
-            {% endfor %}
+
+            <div class="list">
+                {% for product in products %}
+                <div class="product">
+                    <a href="{% url 'describe' product_no=product.productNo %}">  <!-- 修改這裡 -->
+                        <img src="{{ product.picture }}" alt="">
+                        <p>{{ product.productName }}</p>
+                        <span>NT$ {{ product.price }}</span>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </main>
 
