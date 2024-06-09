@@ -3,69 +3,218 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>個人資訊</title>    
+    <title>個人資訊</title>
     <link rel="stylesheet" href="{% static 'css/information.css' %}">
-
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        #title a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .rtop {
+            display: flex;
+            align-items: center;
+        }
+        .user {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .user input {
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .logout-button:hover {
+            background-color: #555;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .list div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .static-text {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="title">
             <h1 id="title"><a href="/">Brch&eacute;</a></h1>
             <nav class="rtop">
-
                 <div><span class="x">&times;</span></div>
-
                 <div class="user">
-                    <input type="image" src="{% static 'img/user.png' %}"  alt="user" name="user" id="user"; width="60"/>    
-                        <div id="modal-member" class="modal" >
+                    <input type="image" src="{% static 'img/user.png' %}" alt="user" name="user" id="user" width="60"/>
+                    <div id="modal-member" class="modal">
+                        <div class="modal-content">
                             <span class="close">&times;</span>
-                            {% include 'member.html' %}    
+                            {% include 'member.html' %}
                         </div>
-                    
+                    </div>
                 </div>
+                <a href="http://127.0.0.1:8000/logout" class="logout-button">登出</a>
             </nav>
         </div>
     </header>
 
     <form>
         <h2>帳戶資訊</h2>
-
         <div class="list">
             <div>
-                <label for="name">編號：</label>
-                <a type='text', id='no', name='no', value='{{ member.memberNo }}'></a>
+                <label for="no">編號：</label>
+                <span id="no" class="static-text">{{ member.memberNo }}</span>
             </div>
             <div>
                 <label for="name">姓名：</label>
-                <a type='text', id='name', name='name', value='{{ member.memberName }}'></a>
+                <span id="name" class="static-text">{{ member.memberName }}</span>
             </div>
             <div>
-                <label for="name">生日：</label>
-                <a type='text', id='birth', name='birth', value='{{ member.birthday }}'></a>
+                <label for="birth">生日：</label>
+                <span id="birth" class="static-text">{{ member.birthday }}</span>
             </div>
             <div>
-                <label for="name">性別：</label>
-                <a type='text', id='gender', name='gender', value='{{ member.gender }}'></a>
+                <label for="gender">性別：</label>
+                <span id="gender" class="static-text">{{ member.gender }}</span>
             </div>
             <div>
-                <label for="name">電話號碼：</label>
-                <input type='text', id='phone', name='phone', value='{{ member.phone }}'>
+                <label for="phone">電話號碼：</label>
+                <input type='text' id='phone' name='phone' value='{{ member.phone }}'>
             </div>
             <div>
-                <label for="name">電子郵件：</label>
-                <input type='text', id='email', name='email', value='{{ member.email }}'>
+                <label for="email">電子郵件：</label>
+                <input type='email' id='email' name='email' value='{{ member.email }}'>
             </div>
             <div>
-                <label for="name">地址：</label>
-                <input type='text', id='address', name='address', value='{{ member.address }}'>
+                <label for="address">地址：</label>
+                <input type='text' id='address' name='address' value='{{ member.address }}'>
             </div>
             <button type="submit">儲存</button>
         </div>
     </form>
 
-
- 
     <script src="{% static 'js/header.js' %}"></script>
+    <script>
+        // Modal handling
+        var modal = document.getElementById('modal-member');
+        var btn = document.getElementById('user');
+        var span = document.getElementsByClassName('close')[0];
 
+        btn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -19,10 +19,10 @@
                     <input type="image" src="{% static 'img/shopping_bag.png' %}"  alt="shopping" name="shopping" id="shopping"; width="40"/>
                     <span class="quantity">0</span>
                 </div>
-
                 <div class="user">
-                    <a href="{% url 'login' %}">
-                    <input type="image" src="{% static 'img/user.png' %}"  alt="user" name="user" id="user"; width="60"/>    
+                    <a href="{% if user.is_authenticated %}/information.html{% else %}/login{% endif %}">
+                        <input type="image" src="{% static 'img/user.png' %}" alt="user" name="user" id="user" width="60"/>
+                    </a>
                 </div>
             </nav>
         </div>
