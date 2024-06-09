@@ -12,9 +12,6 @@
             <h1 id="title">
                 <a href="/">Brch&eacute;</a>
             </h1>
-            <nav class="rtop">
-                <a href="http://127.0.0.1:8000/logout" class="logout-button">登出</a>
-            </nav>
         </div>
     </header>
     
@@ -49,8 +46,11 @@
                 <label for="address" class="label-text">地址：</label>
                 <input type="text" id="address" name="address" class="input-field" value="{{ memberdata.address }}">
             </div>
-            <button type="submit" class="submit-button">儲存</button>
         </div>
+        <nav class="rtop">
+            <button class="submit" type="submit">儲存</button>
+            <a href="http://127.0.0.1:8000/logout" class="logout">登出</a>
+        </nav>
     </form>
 
     <script src="{% static 'js/header.js' %}"></script>

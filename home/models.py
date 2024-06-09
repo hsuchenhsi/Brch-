@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 
+from django.shortcuts import render
+
+
 class MemberData(models.Model):
     memberNo = models.AutoField(primary_key=True, verbose_name='會員編號')
     memberName = models.CharField(max_length=50, verbose_name='會員姓名')
@@ -152,9 +155,28 @@ class ShopingCart(models.Model):
     productNo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='商品編號')
     size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL'),('F','F')), verbose_name='尺寸')
     quantity = models.PositiveIntegerField(verbose_name='數量')
+    productName = models.CharField(max_length=100, verbose_name='商品名稱', blank=True, null=True)
+    picture = models.URLField(verbose_name='圖片', blank=True, null=True)
+    price = models.PositiveIntegerField(default=0, verbose_name='價格')
+
 
     def __str__(self):
         return str(self.shopingcartNo)
+    
+    def save(self, *args, **kwargs):
+        # 在保存購物車項目時，更新商品名稱、圖片和價格
+        Product = self.productNo
+        self.productName = Product.productName
+        self.picture = Product.picture
+        self.price = Product.price
+        super().save(*args, **kwargs)
+
+    def cart(request):
+        shopping_cart_items = ShopingCart.objects.all()
+        for item in shopping_cart_items:
+            item.total_price = item.quantity * item.productNo.price
+        return render(request, 'cart.html', {'shopping_cart_items': shopping_cart_items})
+
                    
 class Comment(models.Model):
     commentNo = models.AutoField(primary_key=True, verbose_name='評論編號')

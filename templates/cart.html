@@ -1,1 +1,32 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車</title>
+</head>
+<body>
+    <h1>購物車</h1>
+    <div id="cart">
+        <h2></h2>
+        <div id="cart-items">
+            <!-- 購物車項目會動態添加到這裡 -->
+            {% for item in shopping_cart_items %}
+            <div class="cart-item">
+                <img src="{{ item.productNo.picture }}" alt="商品圖片">
+                <p>商品名稱: {{ item.productNo.productName }}</p>
+                <p>{{ item.size }}</p>
+                <div>
+                    <button class="minus-btn">-</button>
+                    <p>{{ item.quantity }}</p>
+                    <button class="plus-btn">+</button>
+                </div>
+                <p>NT${{ item.total_price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+
