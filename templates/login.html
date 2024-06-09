@@ -5,68 +5,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>可以滑動的登入/註冊</title>
-    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #fff, #8d8b8b);
+            margin: 0;
+        }
+        .container {
+            background: #8d8b8b;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 800px;
+            max-width: 100%;
+            display: flex;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 25px;
+            right: 10px;
+            background: #ffffffaa;
+            color: #000000;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .close-button:hover {
+            background: #dec3aae1;  
+        }
+        .form-box {
+            width: 50%;
+            padding: 30px;
+            transition: transform 0.5s ease;
+        }
+        .form-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-box h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .form-box input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid #baafaf;
+            border-radius: 0;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .form-box input:focus {
+            border-bottom: 1px solid #333;
+        }
+        .form-box button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #cccccc;
+            color: #6a6969;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .form-box button:hover {
+            background: #928981e1;
+            color: #fff;
+        }
+        .con-box {
+            width: 50%;
+            padding: 30px;
+            background: #8d8b8bb7; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center; 
+        }
+        .con-box h2 {
+            font-size: 24px;
+            color: #333; 
+            margin-bottom: 20px;
+        }
+        .con-box p {
+            font-size: 16px;
+            color: #ADADAD; /*沒有帳號? -> 字體顏色*/
+            margin-bottom: 16px;
+        }
+        .con-box button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #a09d9da1;
+            color: #8d8b8b;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .con-box button:hover {
+            background: #aaaaaa;
+            color: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <button id="close" class="close-button">&nbsp;X&nbsp;</button>
         <div class="form-box">
-
-            <form method="post" action="/register/">
-                {% csrf_token %}
-                <h1>Register</h1>
-                <input id="username" type="text" name="username" placeholder="username">
-                <input id="email" type="email" name="email" placeholder="e-mail">
-                <input id="password" type="password" name="password" placeholder="password">
-                <input id="password2" type="password" name="password2" placeholder="password again">
-                <button type="submit">註冊</button>
-                <p>{{ msg }}</p>
-            </form>
-            
-            
-
-            <div class="login-box ">
-                <h1>Login</h1>
+            <div class="login-box">
                 <form action="/login/" method="post">
                     {% csrf_token %}
-                    <input id="username" type="text" name="username" placeholder="username">
-                    <input id="password" type="password" name="password" placeholder="password">
-                    <input type="submit" value="登入">
+                    <h1>登入</h1>
+                    <input id="username" type="text" name="username" placeholder="使用者名稱">
+                    <input id="password" type="password" name="password" placeholder="密碼">
+                    <button type="submit">登入</button>
                 </form>
-                
                 <p>{{ msg }}</p>
             </div>
-            </div>
-            <div class="con-box left">
-                <h2>Welcome To<br>Brch&eacute;</span></h2>
-                <br><br><br><br><br><br><br><br>
-                <p>已有帳號？</p>
-                <button id="login">去登入</button>
-            </div>
-
-            <div class="con-box right">
-                <h2>Welcome To <br>Brch&eacute;</span></h2>
-                <br><br><br><br><br><br><br><br>
-                <p>沒有帳號？</p>
-                <button id="register">去註冊</button>
+            <div class="register-box hidden">
+                <form method="post" action="/register/">
+                    {% csrf_token %}
+                    <h1>註冊</h1>
+                    <input id="username" type="text" name="username" placeholder="使用者名稱">
+                    <input id="email" type="email" name="email" placeholder="電子郵件">
+                    <input id="password" type="password" name="password" placeholder="密碼">
+                    <input id="password2" type="password" name="password2" placeholder="再次確認密碼">
+                    <button type="submit">註冊</button>
+                    <p>{{ msg }}</p>
+                </form>
             </div>
         </div>
-            <script>
-                let login=document.getElementById('login');
-                let register=document.getElementById( 'register'); 
-                let form_box=document.getElementsByClassName('form-box')[0];
-                let register_box=document.getElementsByClassName ('register-box')[0];
-                let login_box=document.getElementsByClassName('login-box')[0];
-                register.addEventListener('click',()=>{
-                form_box.style.transform='translateX(80%)';
-                login_box.classList.add('hidden');
-                register_box.classList. remove('hidden');
-                })
-                login. addEventListener ('click', ()=>{
-                form_box.style.transform='translate(0%)';
-                register_box.classList.add( 'hidden'); login_box. classList. remove( 'hidden');
-                })
+        <div class="con-box left">
+            <h2>Welcome To<br>Brch&eacute;</h2>
+            <p>已有帳號？</p>
+            <button id="login">去登入</button>
+        </div>
+        <div class="con-box right">
+            <h2>Welcome To<br>Brch&eacute;</h2>
+            <p>沒有帳號？</p>
+            <button id="register">去註冊</button>
+        </div>
+    </div>
+    <script>
+        let login = document.getElementById('login');
+        let register = document.getElementById('register');
+        let formBox = document.querySelector('.form-box');
+        let registerBox = document.querySelector('.register-box');
+        let loginBox = document.querySelector('.login-box');
 
-                document.getElementById('close').addEventListener('click', function() { history.back(); }); 
-            </script>
+        register.addEventListener('click', () => {
+            formBox.style.transform = 'translateX(80%)';
+            loginBox.classList.add('hidden');
+            registerBox.classList.remove('hidden');
+        });
+
+        login.addEventListener('click', () => {
+            formBox.style.transform = 'translateX(0%)';
+            registerBox.classList.add('hidden');
+            loginBox.classList.remove('hidden');
+        });
+
+        document.getElementById('close').addEventListener('click', function() {
+            history.back();
+        });
+    </script>
 </body>
+</html>
