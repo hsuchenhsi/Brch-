@@ -145,9 +145,16 @@ class OrderDetail(models.Model):
     size = models.CharField(max_length=2, choices=(('XS','XS'),('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL'),('F','F')), verbose_name='尺寸')
     quantity= models.PositiveIntegerField(verbose_name='數量')
     singlePrice = models.PositiveIntegerField(verbose_name='單價')
+    productName = models.CharField(max_length=100, verbose_name='商品名稱', blank=True, null=True)
+    picture = models.URLField(verbose_name='圖片', blank=True, null=True)
 
     def __str__(self):
         return str(self.orderdetailNo)
+    
+    def save(self, *args, **kwargs):
+        self.productName = Product.productName
+        self.picture = Product.picture
+        super().save(*args, **kwargs)
 
 class ShopingCart(models.Model):
     shopingcartNo = models.AutoField(primary_key=True, verbose_name='購物車編號')

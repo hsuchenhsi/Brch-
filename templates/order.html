@@ -3,13 +3,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>訂單查詢</title>    
+    <title>訂單資訊</title>
     <link rel="stylesheet" href="{% static 'css/order.css' %}">
-
 </head>
 <body>
     <header>
-        {% include 'header.html' %}
+        <div class="title">
+            <h1 id="title">
+                <a href="/">Brch&eacute;</a>
+            </h1>
+        </div>
+            <span id="name" class="label-text">姓名：{{ memberdata.memberName }}</span>
     </header>
+    
+    <form>
+        <h2>訂單編號：{{ OrderDetail.orderNo }}</h2>
+        <div class="product">
+            <span id="product" class="label-text">{{ OrderDetail.productName }}</span>
+            <span id="size" class="label-text">{{ OrderDetail.size }}號</span>
+            <span id="quantity" class="label-text">{{ OrderDetail.quantity }}件</span>
+            <span id="price" class="label-text">NT${{ price }}</span>
+        </div>
+        <div class="list">
+            <div>
+                <span id="totprice" class="label-text">總金額：{{ Order.total }}</span>
+            </div>
+            <div></div>
+            
+            <div>
+                <span id="pay" class="label-text">付款方式：{{ Order.pay }}</span>
+            </div>
+            <div>
+                <span id="order" class="label-text">訂單狀態：{{ Order.orderStatus }}</span>
+            </div>
+            <div>
+                <span id="address" class="label-text">送貨地址：{{ Order.address }}</span>
+            </div>
+        </div>
+        <div>
+            <span id="date" class="label-text">下單日期：{{ Order.orderdate }}</span>
+        </div>
+    </form>
+    
+
 </body>
 </html>

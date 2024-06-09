@@ -90,7 +90,7 @@ def member(request):
 
 
 from django.contrib.auth.hashers import make_password
-from .models import Post
+from .models import OrderDetail, Post
 
 def user_login(request):
     if request.method == 'POST':
@@ -230,3 +230,15 @@ def get_quantity(request, size):
         return JsonResponse({'status': 'error', 'message': 'Size not found in store'}, status=404)
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+
+def order_detail_view(request):
+    order_detail = OrderDetail.objects.get(id=1)  # 假设您从数据库中获取了订单详情
+    price = order_detail.quantity * order_detail.singlePrice
+
+    context = {
+        'order_detail': order_detail,
+        'price': price,
+    }
+
+    return render(request, 'order.html', context)

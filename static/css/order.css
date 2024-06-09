@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: relative;
+    background-color: rgb(206, 206, 206);
+    height: 120px;
+    width: 100%;
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+#title a {
+    color: #000000;
+    text-decoration: none;
+    font-family:"Optima",sans-serif;
+    font-size: 56px;
+    position: absolute;
+    left:45%;
+    top: 0px;;
+    line-height: 80px;
+    padding-top: 15px;
+}
+
+#name{
+    font-size: 18px;
+    position: absolute;
+    bottom: 5px; /* 将姓名信息放置在 header 的底部 */
+    right: 20px;
+}
+
+form {
+    max-width: 750px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 40px;
+    padding-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    border-top-right-radius: 18% 40%;
+    position: relative;
+    
+}
+
+h2 {
+    color: #333;
+    font-size: 30px;
+    margin-top: 22px;
+    margin-bottom: 40px;
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 將列表分為兩列 */
+    grid-column-gap: 60px;
+    margin-right: 20px;
+}
+
+.list span{
+    font-size: 20px;
+}
+
+.list div {
+    margin-bottom: 30px;
+}
+
+.product{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#date{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+}
