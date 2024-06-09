@@ -16,24 +16,20 @@
     </header>
     
     <form>
-        <button id="close" class="close">&nbsp;X&nbsp;</button>
+        <button id="close" class="close">&nbsp;x&nbsp;</button>
         <h2>{{ user.first_name }} 您好！</h2>
         <div class="list">
             <div>
-                <span class="label-text">編號：</span>
-                <span class="static-text">{{ memberdata.memberNo }}</span>
+                <span id="text" class="label-text">編號：{{ memberdata.memberNo }}</span>
             </div>
             <div>
-                <span class="label-text">姓名：</span>
-                <span class="static-text">{{ memberdata.memberName }}</span>
+                <span id="text" class="label-text">姓名：{{ memberdata.memberName }}</span>
             </div>
             <div>
-                <span class="label-text">生日：</span>
-                <span class="static-text">{{ memberdata.birthday }}</span>
+                <span id="text" class="label-text">生日：{{ memberdata.birthday }}</span>
             </div>
             <div>
-                <span class="label-text">性別：</span>
-                <span class="static-text">{{ memberdata.gender }}</span>
+                <span id="text" class="label-text">性別：{{ memberdata.gender }}</span>
             </div>
             <div>
                 <label for="phone" class="label-text">電話號碼：</label>
@@ -48,17 +44,17 @@
                 <input type="text" id="address" name="address" class="input-field" value="{{ memberdata.address }}">
             </div>
         </div>
-        <nav class="rtop">
-            <button class="submit" type="submit">儲存</button>
+        <nav class="b">
+            <button class="submit" class="submit">儲存</button>
             <a href="http://127.0.0.1:8000/logout" class="logout">登出</a>
         </nav>
     </form>
-
+    
     <script>
         document.getElementById('close').addEventListener('click', function() {
-            window.history.back(); // Navigate back to the previous page
+            window.history.back(); 
         });
     </script>
-    
+
 </body>
 </html>
