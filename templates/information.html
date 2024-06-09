@@ -16,6 +16,7 @@
     </header>
     
     <form>
+        <button id="close" class="close">&nbsp;X&nbsp;</button>
         <h2>{{ user.first_name }} 您好！</h2>
         <div class="list">
             <div>
@@ -53,6 +54,11 @@
         </nav>
     </form>
 
-    <script src="{% static 'js/header.js' %}"></script>
+    <script>
+        document.getElementById('close').addEventListener('click', function() {
+            window.history.back(); // Navigate back to the previous page
+        });
+    </script>
+    
 </body>
 </html>
