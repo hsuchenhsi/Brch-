@@ -68,26 +68,35 @@ def order(request):
 
 
 def information(request):
-    errormessage = ""  
-    member = None  
+    errormessage = ""
+    member = None
     try:
-        
         current_member = request.user  # 获取当前登录的用户
-        member = MemberData.objects.get(memberName=current_member.username) 
-
+        member = MemberData.objects.get(memberName=current_member.username)
     except MemberData.DoesNotExist:
-        errormessage = " (找不到该会员的资料)"
+        errormessage = " (找不到該會員的資料)"
     except Exception as e:
-        errormessage = f" (读取错误: {e})"  # 錯誤信息存储在错误消息中
+        errormessage = f" (讀取錯誤: {e})"
+    
+    memberdatas = MemberData.objects.all()  # 获取所有会员数据
 
-    return render(request, 'information.html', {'member': member, 'errormessage': errormessage})
+    if request.method == 'POST':
+        new_phone = request.POST.get('phone')
+        new_email = request.POST.get('email')
+        new_address = request.POST.get('address')
 
-frontpage
+        if member:
+            member.phone = new_phone
+            member.email = new_email
+            member.address = new_address
+            member.save()
+            messages.success(request, '資料已成功更新')
+            return redirect('information')  # 重新导向到信息页面
+
+    return render(request, 'information.html', {'memberdata': member, 'errormessage': errormessage, 'memberdatas': memberdatas})
 
 def member(request):
     return render(request, 'member.html')
-
-
 
 from django.contrib.auth.hashers import make_password
 from .models import OrderDetail, Post
@@ -242,3 +251,6 @@ def order_detail_view(request):
     }
 
     return render(request, 'order.html', context)
+
+def cart(request):
+    return render(request,'cart.html')

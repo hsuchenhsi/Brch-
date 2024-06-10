@@ -15,21 +15,40 @@
         </div>
     </header>
     
-    <form>
-        <button id="close" class="close">&nbsp;x&nbsp;</button>
-        <h2>{{ user.first_name }} 您好！</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button id="close" class="close" type="button">&nbsp;x&nbsp;</button>
+        <h2>{{ user.username }} 您好！</h2>
         <div class="list">
             <div>
                 <span id="text" class="label-text">編號：{{ memberdata.memberNo }}</span>
             </div>
             <div>
-                <span id="text" class="label-text">姓名：{{ memberdata.memberName }}</span>
+                <span id="text" class="label-text">姓名：
+                    {% for member in memberdatas %}
+                        {% if memberdata.memberNo == member.memberNo %}
+                            {{ member.memberName }}
+                        {% endif %}
+                    {% endfor %}
+                </span>
             </div>
             <div>
-                <span id="text" class="label-text">生日：{{ memberdata.birthday }}</span>
+                <span id="text" class="label-text">生日：
+                    {% for member in memberdatas %}
+                        {% if memberdata.memberNo == member.memberNo %}
+                            {{ member.birthday }}
+                        {% endif %}
+                    {% endfor %}
+                </span>
             </div>
             <div>
-                <span id="text" class="label-text">性別：{{ memberdata.gender }}</span>
+                <span id="text" class="label-text">性別：
+                    {% for member in memberdatas %}
+                        {% if memberdata.memberNo == member.memberNo %}
+                            {{ member.gender }}
+                        {% endif %}
+                    {% endfor %}
+                </span>
             </div>
             <div>
                 <label for="phone" class="label-text">電話號碼：</label>
@@ -45,11 +64,11 @@
             </div>
         </div>
         <nav class="b">
-            <button class="submit" class="submit">儲存</button>
+            <button class="submit" type="submit">儲存</button>
             <a href="http://127.0.0.1:8000/logout" class="logout">登出</a>
         </nav>
     </form>
-    
+
     <script>
         document.getElementById('close').addEventListener('click', function() {
             window.history.back(); 
