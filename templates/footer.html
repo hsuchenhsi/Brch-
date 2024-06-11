@@ -7,9 +7,50 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 </head>
 
+<style>
+    .contact-group {
+        display: flex;
+        grid-template-columns: 10px 10px;
+        text-align:left;
+        margin-left:20px;
+        grid-column-gap: 30px;
+        color:#463f3a;
+    
+    }
+
+    .contact{
+        grid-row-gap: 1em;
+    }
+
+    .copy{
+        text-align: center;
+        color:#463f3a;
+    }
+
+    footer{
+        font-family:'Times New Roman', Times, serif; ;
+        background-color: rgb(206, 206, 206);
+        height: 150px;
+        width: 100%;
+    
+    }
+
+
+</style>
+
 <body>
     <footer>
-        <p>COPYRIGHT&copy;BRCHE CO.,LTD.ALL RIGHTS RESERVED.</p>
+        <p class="copy">COPYRIGHT&copy;BRCHE CO.,LTD.ALL RIGHTS RESERVED.</p>
+        <div class="contact-group">
+            <div class="contact">
+                <p>關於我們</p>
+                <p>客戶服務</p>
+            </div>
+            <div class="contact">
+                <p>IG: _brche__</p>
+                <p>LINE@ Brché</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
