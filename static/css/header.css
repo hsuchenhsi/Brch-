@@ -134,6 +134,10 @@ header{
     width: 100%;
 }
 
+.body{
+    padding:0%;
+}
+
 h1{
     font-family:"Optima",sans-serif;
     font-size: 56px;
@@ -302,6 +306,6 @@ header {
 }
 
 .card .checkOut div:nth-child(2) {
-    background-color: rgb(186, 186, 186); /* 旁邊那個按鈕背景顏色 */
+    background-color: #dcd9d9; /* 旁邊那個按鈕背景顏色 */
     color:black /*0文字顏色*/
 }

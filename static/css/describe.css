@@ -136,6 +136,10 @@
     margin-top: 150px;
 }
 
+.product1 .pd h2{
+    text-align: left;
+}
+
 button {
     padding: 10px 20px;
     background-color:gainsboro;
@@ -147,17 +151,18 @@ button {
   }
 
 button:hover {
-background-color: #e3dada;
+    background-color: #e3dada;
 }
 
 button:active {
-background-color: #c4b0b0;
+    background-color: #c4b0b0;
 }
 /* header----------------------------------------------------------------------------------- */
 header{
     background-color: rgb(206, 206, 206);
     height: 120px;
     width: 100%;
+
 }
 
 .body{

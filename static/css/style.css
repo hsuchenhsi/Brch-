@@ -22,11 +22,13 @@
     background-color: rgb(225, 210, 209);
     text-align: center;
     
+    
 }
 
 .classification h2{
     font-size: 36px;
     font-family:'Times New Roman', Times, serif;
+    margin-top: 0%;
 
 }
 .body{
@@ -87,7 +89,3 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);  
 }
 
-
-.carouselExampleIndicators{
-    background-color: aqua;
-}
