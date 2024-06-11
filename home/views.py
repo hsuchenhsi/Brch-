@@ -189,7 +189,57 @@ def upload_file(request):
                 picture=row['photo-src'],
                 price=row['price']
             )
-        return HttpResponse('上傳成功')
+            html_content = '''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>上傳成功</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f2f2f2;
+                margin: 0;
+            }
+            .container {
+                text-align: center;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #4CAF50;
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>上傳成功</h1>
+            <button onclick="location.href='/'">回首頁</button>
+        </div>
+    </body>
+    </html>
+    '''
+
+        return HttpResponse(html_content)
     return render(request, 'upload.html')
 
 def manage_store(request):
